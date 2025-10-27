@@ -1,0 +1,274 @@
+.quienes-somos {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.about-hero {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.about-hero h2 {
+  color: #2d3748;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  color: #667eea;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 300px;
+}
+
+.about-text {
+  padding: 2rem;
+}
+
+.about-text h3 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+
+.about-text p {
+  color: #4a5568;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.mission-vision {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.mission-card,
+.vision-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mission-card:hover,
+.vision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+}
+
+.card-icon {
+  display: block;
+  margin-bottom: 1rem;
+  color: #667eea;
+}
+
+.mission-card h3,
+.vision-card h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.mission-card p,
+.vision-card p {
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.values-section,
+.stats-section,
+.team-section {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #2d3748;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.value-item {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.value-item:hover {
+  border-color: #667eea;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.value-icon {
+  display: block;
+  margin: 0 auto 1rem;
+  color: #667eea;
+}
+
+.value-item h4 {
+  color: #2d3748;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.value-item p {
+  color: #718096;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+.team-intro {
+  color: #4a5568;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.team-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.team-feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f7fafc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.team-feature:hover {
+  background: #edf2f7;
+  transform: translateX(5px);
+}
+
+.team-check {
+  color: #48bb78;
+  flex-shrink: 0;
+}
+
+.team-feature p {
+  color: #4a5568;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .about-hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .about-card {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image img {
+    min-height: 200px;
+  }
+
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-features {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
