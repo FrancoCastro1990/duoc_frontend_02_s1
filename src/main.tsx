@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@fontsource-variable/montserrat'
 import './index.css'
 import Layout from './components/Layout'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import QuienesSomos from './pages/QuienesSomos'
 import Contactanos from './pages/Contactanos'
@@ -11,6 +12,7 @@ import Contactanos from './pages/Contactanos'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

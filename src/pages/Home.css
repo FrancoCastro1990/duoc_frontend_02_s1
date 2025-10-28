@@ -253,13 +253,13 @@
 /* Buttons */
 .btn-primary,
 .btn-secondary {
-  padding: 0.85rem 1.75rem;
+  padding: 0.65rem 1.25rem;
   border: none;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
 
@@ -363,46 +363,99 @@
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .hero h2 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 
   .hero p {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .featured {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  .featured h3 {
+    font-size: 1.5rem;
   }
 
   .featured-vehicle {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .featured-vehicle img {
-    height: 250px;
+    height: 220px;
   }
 
   .featured-info h4 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .featured-price {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+
+  .featured-description {
+    font-size: 0.95rem;
+  }
+
+  .vehicles-section {
+    padding: 1.5rem;
+  }
+
+  .vehicles-section h3 {
+    font-size: 1.5rem;
   }
 
   .vehicles-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vehicle-card {
+    margin: 0;
+  }
+
+  .vehicle-info {
+    padding: 1.25rem;
+  }
+
+  .vehicle-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .vehicle-price {
+    font-size: 1.35rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
   }
 
   .benefits {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .benefits h3 {
+    font-size: 1.5rem;
   }
 
   .benefits-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .benefit-card h4 {
+    font-size: 1.15rem;
   }
 }

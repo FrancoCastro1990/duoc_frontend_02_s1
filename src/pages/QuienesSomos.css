@@ -15,13 +15,17 @@
 }
 
 .about-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, transparent 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 204, 21, 0.08) 0%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
@@ -62,11 +66,19 @@
   border: 1px solid rgba(30, 64, 175, 0.1);
 }
 
+.about-image {
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
 .about-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 350px;
+  height: auto;
+  object-fit: contain;
+  max-height: 350px;
 }
 
 .about-text {
@@ -107,18 +119,6 @@
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
-}
-
-.mission-card::before,
-.vision-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient-accent);
-  border-radius: 20px 20px 0 0;
 }
 
 .mission-card:hover,
@@ -223,13 +223,17 @@
 }
 
 .stats-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 204, 21, 0.05) 0%, transparent 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 204, 21, 0.05) 0%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
@@ -256,7 +260,7 @@
 }
 
 .stat-card:hover {
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-xl);
   border-color: var(--color-accent);
 }
@@ -315,7 +319,7 @@
 }
 
 .team-check {
-  color: #10B981;
+  color: #10b981;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
 }
@@ -330,15 +334,15 @@
 /* Responsive */
 @media (max-width: 768px) {
   .about-hero {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .about-hero h2 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .about-card {
@@ -346,36 +350,91 @@
   }
 
   .about-image img {
-    min-height: 250px;
+    min-height: 220px;
   }
 
   .about-text {
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .about-text h3 {
+    font-size: 1.75rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
   }
 
   .mission-vision {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mission-card,
+  .vision-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .mission-card h3,
+  .vision-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .mission-card p,
+  .vision-card p {
+    font-size: 0.95rem;
   }
 
   .values-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .value-item {
+    padding: 2rem 1.5rem;
+  }
+
+  .value-item h4 {
+    font-size: 1.2rem;
+  }
+
+  .stats-section {
+    padding: 2rem 1.5rem;
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
   }
 
   .team-features {
     grid-template-columns: 1fr;
   }
 
+  .team-feature {
+    padding: 1.5rem;
+  }
+
+  .team-intro {
+    font-size: 1rem;
+  }
+
   .section-title {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .values-section,
   .stats-section,
   .team-section {
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
   }
 }

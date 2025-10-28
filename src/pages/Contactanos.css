@@ -375,33 +375,79 @@
 
 @media (max-width: 768px) {
   .contact-hero {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
   }
 
   .contact-hero h2 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .contact-info,
   .contact-form-container,
   .map-section,
   .faq-section {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem;
+  }
+
+  .contact-info h3,
+  .contact-form-container h3,
+  .map-section h3,
+  .faq-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .info-item {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .social-icons {
     grid-template-columns: 1fr;
   }
 
+  .social-link {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
   .faq-grid {
     grid-template-columns: 1fr;
   }
 
+  .faq-item {
+    padding: 1.5rem;
+  }
+
+  .faq-item h4 {
+    font-size: 1.05rem;
+  }
+
   .map-placeholder {
-    padding: 3.5rem 2rem;
+    padding: 3rem 1.5rem;
+  }
+
+  .map-content p {
+    font-size: 1rem;
   }
 }

@@ -1,5 +1,16 @@
-import { Target, Telescope, Handshake, Star, Lightbulb, Leaf, Users, Trophy, CheckCircle } from 'lucide-react';
-import './QuienesSomos.css';
+import {
+  Target,
+  Telescope,
+  Handshake,
+  Star,
+  Lightbulb,
+  Leaf,
+  Users,
+  Trophy,
+  CheckCircle,
+} from "lucide-react";
+import "./QuienesSomos.css";
+import logo from "../assets/logo.png";
 
 function QuienesSomos() {
   return (
@@ -12,23 +23,22 @@ function QuienesSomos() {
       <section className="about-content">
         <div className="about-card">
           <div className="about-image">
-            <img
-              src="https://images.unsplash.com/photo-1562519819-016a2297b0c3?w=600&h=400&fit=crop"
-              alt="Nuestra empresa"
-            />
+            <img src={logo} alt="Nuestra empresa" />
           </div>
           <div className="about-text">
             <h3>Nuestra Historia</h3>
             <p>
-              Fundada en 2010, <strong>AutoVentas Premium</strong> nació con la visión de
-              revolucionar la experiencia de compra de vehículos en Chile. Con más de 13 años
-              de experiencia en el mercado automotriz, nos hemos convertido en uno de los
-              distribuidores más confiables y reconocidos del país.
+              Fundada en 2010, <strong>AutoVentas Premium</strong> nació con la
+              visión de revolucionar la experiencia de compra de vehículos en
+              Chile. Con más de 13 años de experiencia en el mercado automotriz,
+              nos hemos convertido en uno de los distribuidores más confiables y
+              reconocidos del país.
             </p>
             <p>
-              Comenzamos con un pequeño lote en Santiago y hoy contamos con múltiples
-              sucursales a lo largo del país, sirviendo a miles de clientes satisfechos
-              que confían en nuestra calidad y servicio profesional.
+              Comenzamos con un pequeño lote en Santiago y hoy contamos con
+              múltiples sucursales a lo largo del país, sirviendo a miles de
+              clientes satisfechos que confían en nuestra calidad y servicio
+              profesional.
             </p>
           </div>
         </div>
@@ -39,8 +49,9 @@ function QuienesSomos() {
             <h3>Nuestra Misión</h3>
             <p>
               Proporcionar a nuestros clientes vehículos de la más alta calidad,
-              con un servicio personalizado y transparente, garantizando una experiencia
-              de compra excepcional desde el primer contacto hasta el post-venta.
+              con un servicio personalizado y transparente, garantizando una
+              experiencia de compra excepcional desde el primer contacto hasta
+              el post-venta.
             </p>
           </div>
 
@@ -49,9 +60,9 @@ function QuienesSomos() {
             <h3>Nuestra Visión</h3>
             <p>
               Ser la empresa líder en ventas de vehículos en Chile para 2030,
-              reconocida por nuestra innovación, compromiso con la satisfacción del
-              cliente y responsabilidad ambiental, expandiendo nuestra presencia a
-              nivel latinoamericano.
+              reconocida por nuestra innovación, compromiso con la satisfacción
+              del cliente y responsabilidad ambiental, expandiendo nuestra
+              presencia a nivel latinoamericano.
             </p>
           </div>
         </div>
@@ -62,27 +73,40 @@ function QuienesSomos() {
             <div className="value-item">
               <Handshake className="value-icon" size={40} strokeWidth={1.5} />
               <h4>Confianza</h4>
-              <p>Construimos relaciones duraderas basadas en la honestidad y transparencia</p>
+              <p>
+                Construimos relaciones duraderas basadas en la honestidad y
+                transparencia
+              </p>
             </div>
             <div className="value-item">
               <Star className="value-icon" size={40} strokeWidth={1.5} />
               <h4>Calidad</h4>
-              <p>Solo ofrecemos vehículos certificados que cumplen los más altos estándares</p>
+              <p>
+                Solo ofrecemos vehículos certificados que cumplen los más altos
+                estándares
+              </p>
             </div>
             <div className="value-item">
               <Lightbulb className="value-icon" size={40} strokeWidth={1.5} />
               <h4>Innovación</h4>
-              <p>Constantemente mejoramos nuestros procesos para ofrecer mejor servicio</p>
+              <p>
+                Constantemente mejoramos nuestros procesos para ofrecer mejor
+                servicio
+              </p>
             </div>
             <div className="value-item">
               <Leaf className="value-icon" size={40} strokeWidth={1.5} />
               <h4>Sostenibilidad</h4>
-              <p>Comprometidos con el medio ambiente y vehículos eco-amigables</p>
+              <p>
+                Comprometidos con el medio ambiente y vehículos eco-amigables
+              </p>
             </div>
             <div className="value-item">
               <Users className="value-icon" size={40} strokeWidth={1.5} />
               <h4>Orientación al Cliente</h4>
-              <p>El cliente es el centro de todas nuestras decisiones y acciones</p>
+              <p>
+                El cliente es el centro de todas nuestras decisiones y acciones
+              </p>
             </div>
             <div className="value-item">
               <Trophy className="value-icon" size={40} strokeWidth={1.5} />
@@ -118,8 +142,8 @@ function QuienesSomos() {
           <h3 className="section-title">Nuestro Equipo</h3>
           <p className="team-intro">
             Contamos con un equipo de más de 100 profesionales especializados en
-            ventas, financiamiento, servicio técnico y atención al cliente, todos
-            dedicados a brindarte la mejor experiencia posible.
+            ventas, financiamiento, servicio técnico y atención al cliente,
+            todos dedicados a brindarte la mejor experiencia posible.
           </p>
           <div className="team-features">
             <div className="team-feature">
