@@ -8,18 +8,21 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import QuienesSomos from './pages/QuienesSomos'
 import Contactanos from './pages/Contactanos'
+import { VehicleProvider } from './contexts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="quienes-somos" element={<QuienesSomos />} />
-          <Route path="contactanos" element={<Contactanos />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <VehicleProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="quienes-somos" element={<QuienesSomos />} />
+            <Route path="contactanos" element={<Contactanos />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </VehicleProvider>
   </StrictMode>,
 )

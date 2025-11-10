@@ -1,101 +1,293 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Tailwind CSS v4 - Import base styles */
+@import "tailwindcss";
 
-:root {
-  /* Paleta de colores premium - Inspirado en Tesla, BMW, Lexus */
-  --color-primary: #0F172A;      /* Gris azulado oscuro - profesional, elegante */
-  --color-secondary: #1E40AF;    /* Azul intenso - tecnología, confianza */
-  --color-accent: #FACC15;       /* Amarillo dorado - energía, lujo */
-  --color-background: #F8FAFC;   /* Gris muy claro - contraste suave */
-  --color-text: #1E293B;         /* Texto principal */
-  --color-text-light: #64748B;   /* Texto secundario */
-  --color-white: #FFFFFF;
-  --color-dark: #0F172A;
+/* Tailwind v4 Theme Configuration using @theme directive */
+@theme {
+  /* Custom color palette for automotive premium brand */
+  /* Primary colors - Professional dark blue-gray */
+  --color-primary-50: #f8fafc;
+  --color-primary-100: #f1f5f9;
+  --color-primary-200: #e2e8f0;
+  --color-primary-300: #cbd5e1;
+  --color-primary-400: #94a3b8;
+  --color-primary-500: #64748b;
+  --color-primary-600: #475569;
+  --color-primary-700: #334155;
+  --color-primary-800: #1e293b;
+  --color-primary-900: #0f172a;
+  --color-primary-950: #020617;
 
-  /* Gradientes premium */
-  --gradient-primary: linear-gradient(135deg, #0F172A 0%, #1E40AF 100%);
-  --gradient-accent: linear-gradient(135deg, #FACC15 0%, #FCD34D 100%);
-  --gradient-overlay: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 64, 175, 0.85) 100%);
+  /* Secondary colors - Trust & Technology blue */
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+  --color-secondary-950: #172554;
 
-  /* Sombras premium */
+  /* Accent colors - Premium gold/yellow for CTAs */
+  --color-accent-50: #fefce8;
+  --color-accent-100: #fef9c3;
+  --color-accent-200: #fef08a;
+  --color-accent-300: #fde047;
+  --color-accent-400: #facc15;
+  --color-accent-500: #eab308;
+  --color-accent-600: #ca8a04;
+  --color-accent-700: #a16207;
+  --color-accent-800: #854d0e;
+  --color-accent-900: #713f12;
+  --color-accent-950: #422006;
+
+  /* Neutral grays for backgrounds and text */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+
+  /* Success, warning, error states */
+  --color-success-50: #f0fdf4;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  /* Font family configuration */
+  --font-sans: 'Montserrat Variable', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Montserrat Variable', 'Montserrat', system-ui, sans-serif;
+
+  /* Premium shadows for depth and elevation */
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
   --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.12);
   --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.16);
   --shadow-xl: 0 12px 48px rgba(15, 23, 42, 0.24);
+  --shadow-2xl: 0 20px 64px rgba(15, 23, 42, 0.32);
+  --shadow-inner: inset 0 2px 4px 0 rgba(15, 23, 42, 0.1);
+  --shadow-premium: 0 10px 40px -10px rgba(30, 64, 175, 0.3);
+  --shadow-glow: 0 0 20px rgba(250, 204, 21, 0.4);
 
-  font-family: 'Montserrat Variable', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
-  color: var(--color-text);
-  background: var(--color-background);
+  /* Spacing extensions */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+  --spacing-104: 26rem;
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+
+  /* Animation durations */
+  --duration-250: 250ms;
+  --duration-350: 350ms;
+
+  /* Timing functions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-smooth-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Custom animations */
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in-down {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-right {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes slide-in-left {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes scale-in {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-fade-in-down: fade-in-down 0.5s ease-out;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-slide-in-left: slide-in-left 0.3s ease-out;
+  --animate-scale-in: scale-in 0.3s ease-out;
+  --animate-shimmer: shimmer 2s linear infinite;
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: var(--color-background);
+/* Custom base styles and CSS variables */
+@layer base {
+  :root {
+    /* Legacy CSS variables - kept for backward compatibility */
+    --color-primary: #0F172A;      /* primary-900 */
+    --color-secondary: #1E40AF;    /* secondary-800 */
+    --color-accent: #FACC15;       /* accent-400 */
+    --color-background: #F8FAFC;   /* primary-50 */
+    --color-text: #1E293B;         /* primary-800 */
+    --color-text-light: #64748B;   /* primary-500 */
+    --color-white: #FFFFFF;
+    --color-dark: #0F172A;
+
+    /* Gradientes premium */
+    --gradient-primary: linear-gradient(135deg, #0F172A 0%, #1E40AF 100%);
+    --gradient-accent: linear-gradient(135deg, #FACC15 0%, #FCD34D 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 64, 175, 0.85) 100%);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply min-w-[320px] min-h-screen bg-primary-50 text-primary-800 font-sans leading-relaxed;
+  }
+
+  #root {
+    @apply w-full min-h-screen;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply leading-tight font-bold text-primary-900 tracking-tight;
+  }
+
+  a {
+    @apply text-inherit no-underline transition-all duration-300 ease-smooth;
+  }
+
+  img {
+    @apply max-w-full h-auto block;
+  }
+
+  button {
+    @apply font-sans cursor-pointer transition-all duration-300 ease-smooth;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply font-sans;
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-br from-primary-900 to-secondary-800 rounded-md border-2 border-primary-50;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply from-secondary-800 to-secondary-700;
+  }
 }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
+/* Custom utilities layer for gradient backgrounds and other custom utilities */
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: linear-gradient(135deg, #0F172A 0%, #1E40AF 100%);
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: -0.02em;
-}
+  .bg-gradient-secondary {
+    background-image: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  .bg-gradient-accent {
+    background-image: linear-gradient(135deg, #FACC15 0%, #FCD34D 100%);
+  }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+  .bg-gradient-overlay {
+    background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 64, 175, 0.85) 100%);
+  }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
 
-input,
-textarea,
-select {
-  font-family: inherit;
-}
+  .bg-gradient-hero {
+    background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
+  }
 
-/* Scrollbar premium */
-::-webkit-scrollbar {
-  width: 12px;
-}
+  /* Custom timing function utilities */
+  .ease-smooth {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
+  .ease-smooth-in {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-primary);
-  border-radius: 6px;
-  border: 2px solid var(--color-background);
-}
+  .ease-smooth-out {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-secondary);
+  /* Custom animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 0.5s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
 }

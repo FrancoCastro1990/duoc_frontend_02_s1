@@ -12,7 +12,10 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - **TypeScript 5.9** - Superset de JavaScript con tipado estático
 - **React Router DOM 7.x** - Librería para navegación y enrutamiento en React
 - **Vite 7.1** - Build tool y servidor de desarrollo de última generación
-- **CSS3** - Estilos modernos con gradientes, flexbox y grid
+- **Tailwind CSS v4** - Framework CSS utility-first con theme personalizado
+- **PostCSS** - Procesador CSS con Autoprefixer
+- **Lucide React** - Librería de iconos moderna
+- **Montserrat Variable** - Tipografía profesional desde Fontsource
 
 ## Funcionalidades Implementadas
 
@@ -61,12 +64,18 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 ### Características Técnicas
 
-- **Navegación inferior fija** - Accesible desde cualquier punto de la página
-- **Diseño responsive** - Adaptable a móviles, tablets y desktop
-- **Animaciones suaves** - Transiciones y efectos hover
+- **Navegación inferior fija** - Accesible desde cualquier punto de la página con backdrop blur
+- **Diseño responsive** - Mobile-first adaptable a móviles, tablets y desktop
+- **Animaciones suaves** - Transiciones y efectos hover con utility classes
 - **Tipado con TypeScript** - Mayor seguridad y mantenibilidad del código
 - **Componentes reutilizables** - Arquitectura modular y escalable
-- **Estilos modernos** - Gradientes, sombras y efectos visuales
+- **Tailwind CSS v4** - Sistema de diseño personalizado con:
+  - Paleta de colores premium (Slate, Blue, Gold)
+  - Gradientes personalizados para hero sections y CTAs
+  - Sombras premium (`shadow-premium`, `shadow-glow`)
+  - Animaciones custom (`animate-fade-in`, `animate-slide-in`)
+  - Tipografía Montserrat Variable optimizada
+- **CSS-first configuration** - Theme configurado con variables CSS nativas
 
 ## Estructura del Proyecto
 
@@ -74,20 +83,60 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 duoc_frontend_02_s1/
 ├── src/
 │   ├── components/
-│   │   ├── Layout.tsx         # Layout principal con menú de navegación
-│   │   └── Layout.css         # Estilos del layout
+│   │   ├── Layout.tsx         # Layout principal con header y navegación inferior
+│   │   ├── ScrollToTop.tsx    # Utilidad para scroll to top en cambio de ruta
+│   │   └── TailwindExample.tsx # Componente de ejemplo (opcional)
 │   ├── pages/
-│   │   ├── Home.tsx           # Página principal con catálogo
-│   │   ├── Home.css           # Estilos de Home
-│   │   ├── QuienesSomos.tsx   # Página Quiénes Somos
-│   │   ├── QuienesSomos.css   # Estilos de Quiénes Somos
-│   │   ├── Contactanos.tsx    # Página de contacto
-│   │   └── Contactanos.css    # Estilos de Contáctanos
+│   │   ├── Home.tsx           # Página principal con catálogo de vehículos
+│   │   ├── QuienesSomos.tsx   # Página Quiénes Somos (empresa, misión, valores)
+│   │   └── Contactanos.tsx    # Página de contacto con formulario
 │   ├── main.tsx               # Punto de entrada con configuración de rutas
-│   └── index.css              # Estilos globales
+│   └── index.css              # Configuración Tailwind v4 + theme personalizado
+├── tailwind.config.js         # Configuración mínima de Tailwind
+├── postcss.config.js          # PostCSS con Tailwind y Autoprefixer
+├── tailwind.d.ts              # Tipos TypeScript para Tailwind
 ├── package.json               # Dependencias del proyecto
+├── CLAUDE.md                  # Instrucciones para Claude Code
 └── README.md                  # Este archivo
 ```
+
+## Sistema de Diseño (Tailwind Theme)
+
+El proyecto utiliza un theme personalizado de Tailwind CSS v4 optimizado para un sitio de ventas automotrices premium:
+
+### Paleta de Colores
+
+- **Primary (Slate)**: Tonos profesionales azul-grisáceo para headers y texto
+- **Secondary (Blue)**: Azul tecnológico para CTAs y elementos interactivos
+- **Accent (Gold)**: Dorado premium para highlights y badges especiales
+- **Neutrals**: Escala de grises para backgrounds y UI subtle
+
+### Gradientes Personalizados
+
+- `bg-gradient-primary` - Gradiente oscuro azul-gris a azul
+- `bg-gradient-secondary` - Gradiente de azul
+- `bg-gradient-accent` - Gradiente dorado/amarillo
+- `bg-gradient-hero` - Gradiente específico para hero sections
+- `bg-gradient-overlay` - Overlay oscuro para fondos de imagen
+
+### Sombras Premium
+
+- `shadow-premium` - Sombra elevada para cards importantes
+- `shadow-glow` - Efecto de brillo para elementos accent
+
+### Animaciones Custom
+
+- `animate-fade-in` - Entrada suave con fade
+- `animate-fade-in-down` - Entrada con fade desde arriba
+- `animate-slide-in-right` - Deslizamiento desde la derecha
+- `animate-slide-in-left` - Deslizamiento desde la izquierda
+- `animate-scale-in` - Entrada con escala
+- `animate-shimmer` - Efecto shimmer para estados de carga
+
+### Tipografía
+
+- Font family: **Montserrat Variable** (light, medium, semibold, bold, extrabold)
+- Escala responsive con breakpoint `md:` (768px)
 
 ## Instalación y Ejecución
 
@@ -154,7 +203,10 @@ Franco Castro Villanueva - Desarrollo Frontend II (PFY2202)
 
 ## Tecnología Base
 
-Este proyecto fue creado con Vite + React + TypeScript, proporcionando:
+Este proyecto fue creado con Vite + React + TypeScript + Tailwind CSS v4, proporcionando:
 - Hot Module Replacement (HMR) para desarrollo rápido
-- Build optimizado para producción
+- Build optimizado para producción con tree-shaking de CSS
 - TypeScript para desarrollo type-safe
+- Tailwind CSS v4 con CSS-first configuration
+- PostCSS para procesamiento de CSS moderno
+- Sistema de diseño personalizado para marca automotriz premium
