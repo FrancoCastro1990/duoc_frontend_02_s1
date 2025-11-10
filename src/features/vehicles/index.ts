@@ -16,6 +16,10 @@ export type { VehicleProviderProps } from './context/VehicleProvider';
 // Type exports
 export type { Vehicle, CreateVehicleInput, UpdateVehicleInput } from './types/vehicle';
 
+// Hook exports
+export { useVehicleCatalog } from './hooks/useVehicleCatalog';
+export type { CatalogVehicle, FeaturedVehicle } from './hooks/useVehicleCatalog';
+
 // Component exports
 export { VehicleExample } from './components/VehicleExample';
 

@@ -1,79 +1,8 @@
 import { CheckCircle, DollarSign, Wrench, FileText } from 'lucide-react';
-
-interface Vehicle {
-  id: number;
-  name: string;
-  brand: string;
-  year: number;
-  price: string;
-  image: string;
-  type: string;
-  features: string[];
-}
+import { useVehicleCatalog } from '../hooks/useVehicleCatalog';
 
 function VehicleCatalog() {
-  const vehicles: Vehicle[] = [
-    {
-      id: 1,
-      name: 'Camry Hybrid',
-      brand: 'Toyota',
-      year: 2024,
-      price: '$32.990.000',
-      image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
-      type: 'Sedán',
-      features: ['Híbrido', 'Automático', 'Full Equipo']
-    },
-    {
-      id: 2,
-      name: 'Mustang GT',
-      brand: 'Ford',
-      year: 2024,
-      price: '$45.990.000',
-      image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&h=300&fit=crop',
-      type: 'Deportivo',
-      features: ['V8', '450 HP', 'Manual']
-    },
-    {
-      id: 3,
-      name: 'CX-5',
-      brand: 'Mazda',
-      year: 2024,
-      price: '$28.990.000',
-      image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=400&h=300&fit=crop',
-      type: 'SUV',
-      features: ['AWD', 'Automático', 'Cuero']
-    },
-    {
-      id: 4,
-      name: 'Model 3',
-      brand: 'Tesla',
-      year: 2024,
-      price: '$38.990.000',
-      image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
-      type: 'Eléctrico',
-      features: ['100% Eléctrico', 'Autopilot', 'Long Range']
-    },
-    {
-      id: 5,
-      name: 'Tucson',
-      brand: 'Hyundai',
-      year: 2024,
-      price: '$26.990.000',
-      image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400&h=300&fit=crop',
-      type: 'SUV',
-      features: ['Turbo', 'Automático', 'Panorámico']
-    },
-    {
-      id: 6,
-      name: 'Civic Type R',
-      brand: 'Honda',
-      year: 2024,
-      price: '$42.990.000',
-      image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop',
-      type: 'Deportivo',
-      features: ['Turbo', '315 HP', 'Manual']
-    }
-  ];
+  const { catalogVehicles, featuredVehicle } = useVehicleCatalog();
 
   return (
     <div className="animate-fade-in">
@@ -102,14 +31,14 @@ function VehicleCatalog() {
 
         <div className="grid grid-cols-2 gap-10 items-center md:grid-cols-1 md:gap-6">
           <img
-            src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=500&fit=crop"
+            src={featuredVehicle.image}
             alt="Featured"
             className="w-full h-[350px] object-cover rounded-2xl shadow-md transition-transform duration-[400ms] ease-smooth hover:scale-[1.02] md:h-[220px]"
           />
 
           <div>
             <h4 className="text-primary-900 text-4xl font-extrabold m-0 mb-3 md:text-2xl">
-              BMW X5 2024
+              {featuredVehicle.name}
             </h4>
             <p
               className="text-[2.5rem] font-extrabold mb-5 md:text-[1.75rem]"
@@ -120,11 +49,10 @@ function VehicleCatalog() {
                 backgroundClip: 'text'
               }}
             >
-              $52.990.000
+              {featuredVehicle.price}
             </p>
             <p className="text-primary-500 text-[1.05rem] leading-relaxed mb-8 md:text-[0.95rem]">
-              SUV Premium con tecnología de punta, motor V6 turbo,
-              interior de lujo y sistema de conducción autónoma nivel 2.
+              {featuredVehicle.description}
             </p>
             <button className="bg-gradient-primary text-white font-bold rounded-xl px-5 py-[0.65rem] shadow-md transition-all duration-300 ease-smooth border-none cursor-pointer text-[0.95rem] tracking-wide hover:-translate-y-1 hover:shadow-xl">
               Ver Detalles
@@ -140,7 +68,7 @@ function VehicleCatalog() {
         </h3>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
-          {vehicles.map(vehicle => (
+          {catalogVehicles.map(vehicle => (
             <div
               key={vehicle.id}
               className="bg-primary-50 rounded-2xl overflow-hidden shadow-sm border-2 border-transparent transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-secondary-800"

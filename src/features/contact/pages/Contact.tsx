@@ -1,39 +1,8 @@
-import { useState } from 'react';
-import type { FormEvent } from 'react';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Linkedin, MapPinned, CheckCircle } from 'lucide-react';
+import { useContactForm } from '../hooks/useContactForm';
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    asunto: '',
-    mensaje: ''
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        nombre: '',
-        email: '',
-        telefono: '',
-        asunto: '',
-        mensaje: ''
-      });
-    }, 3000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const { formData, submitted, handleSubmit, handleChange } = useContactForm();
 
   return (
     <div className="animate-fade-in">

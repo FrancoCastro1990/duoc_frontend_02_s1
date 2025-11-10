@@ -51,6 +51,13 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - ✓ Barrel exports para importaciones limpias
 - ✓ Escalabilidad mejorada para crecimiento futuro
 
+**Custom Hooks para Separación de Lógica y UI**
+- ✓ `useVehicleCatalog()` - Gestión de catálogo con transformación de datos
+- ✓ `useContactForm()` - Gestión de formulario de contacto con validación
+- ✓ Separación completa entre lógica de negocio y presentación
+- ✓ Hooks reutilizables y testables independientemente
+- ✓ Integración con VehicleContext para fuente única de verdad
+
 ### Páginas Desarrolladas
 
 #### 1. Home (Página Principal)
@@ -91,6 +98,12 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
   - CRUD completo: getVehicles, addVehicle, updateVehicle, deleteVehicle
   - TypeScript completamente tipado con interfaces Vehicle
   - 5 vehículos de ejemplo precargados
+- **Custom Hooks para Separación de Lógica** - Patrón de separación de responsabilidades:
+  - `useVehicleCatalog()` - Transformación de datos y lógica de catálogo
+  - `useContactForm()` - Gestión de formulario con validación
+  - Componentes enfocados exclusivamente en presentación
+  - Lógica de negocio reutilizable y testeable
+  - Integración con VehicleContext para fuente única de verdad
 - **Screaming Architecture** - Organización por features/dominios:
   - Features: vehicles, about, contact, shared
   - Cada feature auto-contenida con componentes, tipos, contextos
@@ -120,6 +133,8 @@ duoc_frontend_02_s1/
 │   │   │   │   ├── VehicleContext.tsx    # Contexto de vehículos
 │   │   │   │   ├── VehicleProvider.tsx   # Provider con estado y CRUD
 │   │   │   │   └── index.ts              # Barrel export
+│   │   │   ├── hooks/
+│   │   │   │   └── useVehicleCatalog.ts  # Hook para lógica del catálogo
 │   │   │   ├── pages/
 │   │   │   │   └── VehicleCatalog.tsx    # Página de catálogo (Home)
 │   │   │   ├── types/
@@ -130,6 +145,8 @@ duoc_frontend_02_s1/
 │   │   │   │   └── AboutUs.tsx
 │   │   │   └── index.ts
 │   │   ├── contact/               # Feature de Contacto
+│   │   │   ├── hooks/
+│   │   │   │   └── useContactForm.ts     # Hook para lógica del formulario
 │   │   │   ├── pages/
 │   │   │   │   └── Contact.tsx
 │   │   │   └── index.ts
@@ -152,10 +169,36 @@ duoc_frontend_02_s1/
 ### Ventajas de Screaming Architecture
 
 1. **Claridad de propósito** - La estructura comunica qué hace la aplicación (vehículos, about, contacto)
-2. **Aislamiento de features** - Cada feature es auto-contenida
+2. **Aislamiento de features** - Cada feature es auto-contenida con componentes, hooks, tipos
 3. **Escalabilidad** - Agregar nuevas features es directo y predecible
-4. **Mantenibilidad** - Código relacionado está agrupado
+4. **Mantenibilidad** - Código relacionado está agrupado (componente + hook + tipos)
 5. **Menor acoplamiento** - Features no dependen entre sí, solo de shared
+6. **Separación de responsabilidades** - Hooks extraen lógica, componentes manejan UI
+
+### Flujo de Datos en la Aplicación
+
+```
+                    main.tsx
+                       ↓
+              VehicleProvider (wrap app)
+                       ↓
+        ┌──────────────┴──────────────┐
+        ↓                             ↓
+  VehicleContext              React Router
+  (global state)              (routing)
+        ↓                             ↓
+  useVehicles()                   Routes
+        ↓                             ↓
+        └──────────→ Custom Hooks ←───┘
+                    (business logic)
+                          ↓
+              ┌───────────┼───────────┐
+              ↓           ↓           ↓
+      useVehicleCatalog useContactForm  ...
+              ↓           ↓
+        Components   Components
+        (UI only)    (UI only)
+```
 
 ## Sistema de Diseño (Tailwind Theme)
 
@@ -261,6 +304,155 @@ function MyComponent() {
 - **`addVehicle(vehicle)`** - Agrega un nuevo vehículo (genera ID automático)
 - **`updateVehicle(id, updates)`** - Actualiza un vehículo existente por ID
 - **`deleteVehicle(id)`** - Elimina un vehículo por ID
+
+## Custom Hooks - Separación de Lógica y UI
+
+El proyecto implementa el patrón de **separación de responsabilidades** mediante custom hooks que extraen la lógica de negocio de los componentes, dejándolos enfocados únicamente en la presentación.
+
+### useVehicleCatalog - Hook de Gestión de Catálogo
+
+**Ubicación:** `src/features/vehicles/hooks/useVehicleCatalog.ts`
+
+Este hook integra el VehicleContext y agrega lógica de transformación para el catálogo de vehículos.
+
+#### Características
+
+- **Integración con VehicleContext**: Consume vehículos del estado global
+- **Transformación de datos**: Convierte datos básicos en formato de catálogo
+- **Formateo de precios**: Formato chileno ($28.990.000)
+- **Detección de tipo**: Categoriza vehículos (SUV, Sedán, Eléctrico, Híbrido, Deportivo)
+- **Extracción de características**: Analiza descripciones para extraer features
+- **Vehículo destacado**: Selecciona dinámicamente el vehículo más caro
+- **Funciones utilitarias**: Filtrado por año, tipo y marca
+
+#### Uso en componentes
+
+```typescript
+import { useVehicleCatalog } from '@/features/vehicles';
+
+function VehicleCatalog() {
+  const {
+    catalogVehicles,      // Vehículos transformados para catálogo
+    featuredVehicle,      // Vehículo destacado del mes
+    addVehicle,           // Agregar vehículo al contexto
+    updateVehicle,        // Actualizar vehículo
+    deleteVehicle,        // Eliminar vehículo
+    getVehicleCount,      // Obtener cantidad total
+    getVehiclesByType,    // Filtrar por tipo
+    getVehiclesByBrand,   // Filtrar por marca
+    getVehiclesByYear,    // Filtrar por año
+    getAvailableTypes,    // Obtener tipos únicos
+    getAvailableBrands    // Obtener marcas únicas
+  } = useVehicleCatalog();
+
+  return (
+    <div>
+      {catalogVehicles.map(vehicle => (
+        <VehicleCard key={vehicle.id} vehicle={vehicle} />
+      ))}
+    </div>
+  );
+}
+```
+
+#### Tipos exportados
+
+```typescript
+interface CatalogVehicle {
+  id: string;
+  name: string;          // "Brand Model"
+  brand: string;         // Marca
+  year: number;          // Año
+  price: string;         // Precio formateado "$28.990.000"
+  image: string;         // URL de imagen
+  type: string;          // SUV, Sedán, Eléctrico, etc.
+  features: string[];    // Características extraídas
+  description: string;   // Descripción completa
+}
+
+interface FeaturedVehicle {
+  id: string;
+  name: string;
+  brand: string;
+  model: string;
+  year: number;
+  price: string;
+  image: string;
+  originalPrice: string;
+  discount: string;
+  savings: string;
+}
+```
+
+### useContactForm - Hook de Gestión de Formulario
+
+**Ubicación:** `src/features/contact/hooks/useContactForm.ts`
+
+Este hook encapsula toda la lógica del formulario de contacto, incluyendo estado, validación y envío.
+
+#### Características
+
+- **Gestión de estado del formulario**: 5 campos (nombre, email, teléfono, asunto, mensaje)
+- **Manejo de cambios**: Handler unificado para todos los inputs
+- **Envío de formulario**: Lógica de submit con prevención de default
+- **Estado de éxito**: Mensaje de confirmación temporal (3 segundos)
+- **Reset automático**: Limpia el formulario después del envío exitoso
+- **TypeScript estricto**: Tipos para todos los datos y eventos
+
+#### Uso en componentes
+
+```typescript
+import { useContactForm } from '@/features/contact';
+
+function Contact() {
+  const {
+    formData,      // { nombre, email, telefono, asunto, mensaje }
+    submitted,     // boolean - indica si el formulario fue enviado
+    handleSubmit,  // Función para manejar el submit
+    handleChange   // Función para manejar cambios en inputs
+  } = useContactForm();
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        name="nombre"
+        value={formData.nombre}
+        onChange={handleChange}
+      />
+      <input
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      {/* ...más campos... */}
+      <button type="submit">Enviar</button>
+      {submitted && <p>¡Mensaje enviado con éxito!</p>}
+    </form>
+  );
+}
+```
+
+#### Tipo exportado
+
+```typescript
+interface ContactFormData {
+  nombre: string;
+  email: string;
+  telefono: string;
+  asunto: string;
+  mensaje: string;
+}
+```
+
+### Beneficios de los Custom Hooks
+
+1. **Separación de responsabilidades**: Lógica separada de la presentación
+2. **Reutilización**: Los hooks pueden usarse en múltiples componentes
+3. **Testabilidad**: Los hooks se pueden testear independientemente
+4. **Mantenibilidad**: Cambios en lógica no requieren tocar el UI
+5. **Legibilidad**: Componentes más limpios y enfocados en JSX
+6. **Type Safety**: TypeScript garantiza tipos correctos en toda la cadena
 
 ## Instalación y Ejecución
 
