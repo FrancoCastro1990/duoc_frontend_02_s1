@@ -3,12 +3,11 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@fontsource-variable/montserrat'
 import './index.css'
-import Layout from './components/Layout'
-import ScrollToTop from './components/ScrollToTop'
-import Home from './pages/Home'
-import QuienesSomos from './pages/QuienesSomos'
-import Contactanos from './pages/Contactanos'
-import { VehicleProvider } from './contexts'
+import { Layout, ScrollToTop } from './features/shared'
+import { VehicleCatalog } from './features/vehicles'
+import { AboutUs } from './features/about'
+import { Contact } from './features/contact'
+import { VehicleProvider } from './features/vehicles'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,9 +16,9 @@ createRoot(document.getElementById('root')!).render(
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="quienes-somos" element={<QuienesSomos />} />
-            <Route path="contactanos" element={<Contactanos />} />
+            <Route index element={<VehicleCatalog />} />
+            <Route path="quienes-somos" element={<AboutUs />} />
+            <Route path="contactanos" element={<Contact />} />
           </Route>
         </Routes>
       </BrowserRouter>

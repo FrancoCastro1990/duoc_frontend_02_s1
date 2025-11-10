@@ -11,7 +11,7 @@ interface Vehicle {
   features: string[];
 }
 
-function Home() {
+function VehicleCatalog() {
   const vehicles: Vehicle[] = [
     {
       id: 1,
@@ -267,4 +267,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default VehicleCatalog;

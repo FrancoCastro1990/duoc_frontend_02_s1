@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Linkedin, MapPinned, CheckCircle } from 'lucide-react';
 
-function Contactanos() {
+function Contact() {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -330,4 +330,4 @@ function Contactanos() {
   );
 }
 
-export default Contactanos;
+export default Contact;

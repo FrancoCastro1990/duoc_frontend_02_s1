@@ -9,9 +9,9 @@ import {
   Trophy,
   CheckCircle,
 } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../../../assets/logo.png";
 
-function QuienesSomos() {
+function AboutUs() {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
@@ -248,4 +248,4 @@ function QuienesSomos() {
   );
 }
 
-export default QuienesSomos;
+export default AboutUs;

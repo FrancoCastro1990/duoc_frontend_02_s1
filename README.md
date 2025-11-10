@@ -35,6 +35,22 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - ✓ Layout consistente con header y navegación
 - ✓ Diseño responsive y profesional
 
+### Funcionalidades Adicionales
+
+**Estado Global con Context API**
+- ✓ VehicleContext implementado para gestión centralizada de vehículos
+- ✓ CRUD completo: crear, leer, actualizar y eliminar vehículos
+- ✓ Custom hook `useVehicles()` para consumir el contexto fácilmente
+- ✓ 5 vehículos de ejemplo precargados
+- ✓ TypeScript completamente tipado
+
+**Screaming Architecture**
+- ✓ Estructura organizada por features/dominios de negocio
+- ✓ Separación clara: vehicles, about, contact, shared
+- ✓ Cada feature es auto-contenida con sus componentes, tipos y contextos
+- ✓ Barrel exports para importaciones limpias
+- ✓ Escalabilidad mejorada para crecimiento futuro
+
 ### Páginas Desarrolladas
 
 #### 1. Home (Página Principal)
@@ -69,6 +85,16 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - **Animaciones suaves** - Transiciones y efectos hover con utility classes
 - **Tipado con TypeScript** - Mayor seguridad y mantenibilidad del código
 - **Componentes reutilizables** - Arquitectura modular y escalable
+- **Estado Global con Context API** - Gestión centralizada de vehículos con:
+  - VehicleProvider para proveer estado global
+  - Custom hook `useVehicles()` para consumir el contexto
+  - CRUD completo: getVehicles, addVehicle, updateVehicle, deleteVehicle
+  - TypeScript completamente tipado con interfaces Vehicle
+  - 5 vehículos de ejemplo precargados
+- **Screaming Architecture** - Organización por features/dominios:
+  - Features: vehicles, about, contact, shared
+  - Cada feature auto-contenida con componentes, tipos, contextos
+  - Barrel exports para API pública limpia
 - **Tailwind CSS v4** - Sistema de diseño personalizado con:
   - Paleta de colores premium (Slate, Blue, Gold)
   - Gradientes personalizados para hero sections y CTAs
@@ -79,26 +105,57 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 ## Estructura del Proyecto
 
+El proyecto utiliza **Screaming Architecture** - una estructura organizada por features/dominios de negocio en lugar de capas técnicas:
+
 ```
 duoc_frontend_02_s1/
 ├── src/
-│   ├── components/
-│   │   ├── Layout.tsx         # Layout principal con header y navegación inferior
-│   │   ├── ScrollToTop.tsx    # Utilidad para scroll to top en cambio de ruta
-│   │   └── TailwindExample.tsx # Componente de ejemplo (opcional)
-│   ├── pages/
-│   │   ├── Home.tsx           # Página principal con catálogo de vehículos
-│   │   ├── QuienesSomos.tsx   # Página Quiénes Somos (empresa, misión, valores)
-│   │   └── Contactanos.tsx    # Página de contacto con formulario
-│   ├── main.tsx               # Punto de entrada con configuración de rutas
-│   └── index.css              # Configuración Tailwind v4 + theme personalizado
-├── tailwind.config.js         # Configuración mínima de Tailwind
-├── postcss.config.js          # PostCSS con Tailwind y Autoprefixer
-├── tailwind.d.ts              # Tipos TypeScript para Tailwind
-├── package.json               # Dependencias del proyecto
-├── CLAUDE.md                  # Instrucciones para Claude Code
-└── README.md                  # Este archivo
+│   ├── features/
+│   │   ├── vehicles/              # Feature de vehículos
+│   │   │   ├── components/
+│   │   │   │   ├── VehicleCard.tsx
+│   │   │   │   ├── VehicleList.tsx
+│   │   │   │   └── VehicleExample.tsx
+│   │   │   ├── context/
+│   │   │   │   ├── VehicleContext.tsx    # Contexto de vehículos
+│   │   │   │   ├── VehicleProvider.tsx   # Provider con estado y CRUD
+│   │   │   │   └── index.ts              # Barrel export
+│   │   │   ├── pages/
+│   │   │   │   └── VehicleCatalog.tsx    # Página de catálogo (Home)
+│   │   │   ├── types/
+│   │   │   │   └── vehicle.ts            # Tipos TypeScript de vehículo
+│   │   │   └── index.ts                  # Public API del feature
+│   │   ├── about/                 # Feature de Quiénes Somos
+│   │   │   ├── pages/
+│   │   │   │   └── AboutUs.tsx
+│   │   │   └── index.ts
+│   │   ├── contact/               # Feature de Contacto
+│   │   │   ├── pages/
+│   │   │   │   └── Contact.tsx
+│   │   │   └── index.ts
+│   │   └── shared/                # Componentes compartidos
+│   │       ├── components/
+│   │       │   ├── Layout.tsx
+│   │       │   ├── ScrollToTop.tsx
+│   │       │   └── TailwindExample.tsx
+│   │       └── index.ts
+│   ├── main.tsx                   # Punto de entrada con rutas y providers
+│   └── index.css                  # Configuración Tailwind v4 + theme
+├── tailwind.config.js             # Configuración mínima de Tailwind
+├── postcss.config.js              # PostCSS con Tailwind y Autoprefixer
+├── tailwind.d.ts                  # Tipos TypeScript para Tailwind
+├── package.json                   # Dependencias del proyecto
+├── CLAUDE.md                      # Instrucciones para Claude Code
+└── README.md                      # Este archivo
 ```
+
+### Ventajas de Screaming Architecture
+
+1. **Claridad de propósito** - La estructura comunica qué hace la aplicación (vehículos, about, contacto)
+2. **Aislamiento de features** - Cada feature es auto-contenida
+3. **Escalabilidad** - Agregar nuevas features es directo y predecible
+4. **Mantenibilidad** - Código relacionado está agrupado
+5. **Menor acoplamiento** - Features no dependen entre sí, solo de shared
 
 ## Sistema de Diseño (Tailwind Theme)
 
@@ -137,6 +194,73 @@ El proyecto utiliza un theme personalizado de Tailwind CSS v4 optimizado para un
 
 - Font family: **Montserrat Variable** (light, medium, semibold, bold, extrabold)
 - Escala responsive con breakpoint `md:` (768px)
+
+## Uso del VehicleContext (Estado Global)
+
+El proyecto implementa gestión de estado global usando React Context API para manejar los vehículos.
+
+### Estructura de un Vehículo
+
+```typescript
+interface Vehicle {
+  id: string | number;
+  brand: string;        // Marca
+  model: string;        // Modelo
+  price: number;        // Precio
+  year: number;         // Año
+  image: string;        // URL de la imagen
+  description: string;  // Descripción
+}
+```
+
+### Cómo usar el contexto en componentes
+
+```typescript
+import { useVehicles } from '@/features/vehicles';
+
+function MyComponent() {
+  // Obtener el estado y métodos del contexto
+  const { vehicles, addVehicle, updateVehicle, deleteVehicle } = useVehicles();
+
+  // Listar vehículos
+  const vehicleList = vehicles.map(vehicle => (
+    <div key={vehicle.id}>
+      {vehicle.brand} {vehicle.model} - ${vehicle.price}
+    </div>
+  ));
+
+  // Agregar un vehículo
+  const handleAdd = () => {
+    addVehicle({
+      brand: 'Toyota',
+      model: 'Corolla',
+      price: 25000000,
+      year: 2024,
+      image: 'https://example.com/image.jpg',
+      description: 'Sedán híbrido eficiente'
+    });
+  };
+
+  // Actualizar un vehículo
+  const handleUpdate = (id: string | number) => {
+    updateVehicle(id, { price: 26000000 });
+  };
+
+  // Eliminar un vehículo
+  const handleDelete = (id: string | number) => {
+    deleteVehicle(id);
+  };
+
+  return <div>{vehicleList}</div>;
+}
+```
+
+### Métodos disponibles
+
+- **`vehicles`** - Array con todos los vehículos
+- **`addVehicle(vehicle)`** - Agrega un nuevo vehículo (genera ID automático)
+- **`updateVehicle(id, updates)`** - Actualiza un vehículo existente por ID
+- **`deleteVehicle(id)`** - Elimina un vehículo por ID
 
 ## Instalación y Ejecución
 
