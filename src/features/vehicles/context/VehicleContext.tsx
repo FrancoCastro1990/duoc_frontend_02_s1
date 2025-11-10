@@ -7,6 +7,7 @@ import type { Vehicle } from "../types/vehicle";
  */
 export interface VehicleContextState {
   vehicles: Vehicle[];
+  possiblePurchaseIds: Set<string>;
 }
 
 /**
@@ -41,6 +42,31 @@ export interface VehicleContextActions {
    * @returns true if deleted, false if not found
    */
   deleteVehicle: (id: string) => boolean;
+
+  /**
+   * Mark a vehicle as a possible purchase
+   * @param vehicleId Vehicle ID to mark
+   */
+  markForPurchase: (vehicleId: string) => void;
+
+  /**
+   * Unmark a vehicle from possible purchases
+   * @param vehicleId Vehicle ID to unmark
+   */
+  unmarkForPurchase: (vehicleId: string) => void;
+
+  /**
+   * Check if a vehicle is marked for possible purchase
+   * @param vehicleId Vehicle ID to check
+   * @returns true if marked, false otherwise
+   */
+  isMarkedForPurchase: (vehicleId: string) => boolean;
+
+  /**
+   * Get all vehicles marked for possible purchase
+   * @returns Array of vehicles marked for possible purchase
+   */
+  getPossiblePurchases: () => Vehicle[];
 }
 
 /**
@@ -54,6 +80,7 @@ export interface VehicleContextValue extends VehicleContextState, VehicleContext
  */
 const defaultContextValue: VehicleContextValue = {
   vehicles: [],
+  possiblePurchaseIds: new Set(),
   getVehicles: () => {
     throw new Error('getVehicles must be used within a VehicleProvider');
   },
@@ -65,6 +92,18 @@ const defaultContextValue: VehicleContextValue = {
   },
   deleteVehicle: () => {
     throw new Error('deleteVehicle must be used within a VehicleProvider');
+  },
+  markForPurchase: () => {
+    throw new Error('markForPurchase must be used within a VehicleProvider');
+  },
+  unmarkForPurchase: () => {
+    throw new Error('unmarkForPurchase must be used within a VehicleProvider');
+  },
+  isMarkedForPurchase: () => {
+    throw new Error('isMarkedForPurchase must be used within a VehicleProvider');
+  },
+  getPossiblePurchases: () => {
+    throw new Error('getPossiblePurchases must be used within a VehicleProvider');
   },
 };
 

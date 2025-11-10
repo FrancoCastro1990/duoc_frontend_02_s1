@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { VehicleContext } from "./VehicleContext";
 import type { VehicleContextValue } from "./VehicleContext";
 import type { Vehicle } from "../types/vehicle";
+
+/**
+ * LocalStorage key for persisting possible purchases
+ */
+const POSSIBLE_PURCHASES_STORAGE_KEY = 'possiblePurchases';
 
 /**
  * Initial sample vehicles for testing
@@ -64,11 +69,49 @@ export interface VehicleProviderProps {
 }
 
 /**
+ * Load possible purchases from localStorage
+ */
+const loadPossiblePurchases = (): Set<string> => {
+  try {
+    const stored = localStorage.getItem(POSSIBLE_PURCHASES_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      return new Set(Array.isArray(parsed) ? parsed : []);
+    }
+  } catch (error) {
+    console.error('Error loading possible purchases from localStorage:', error);
+  }
+  return new Set();
+};
+
+/**
+ * Save possible purchases to localStorage
+ */
+const savePossiblePurchases = (purchaseIds: Set<string>): void => {
+  try {
+    localStorage.setItem(
+      POSSIBLE_PURCHASES_STORAGE_KEY,
+      JSON.stringify(Array.from(purchaseIds))
+    );
+  } catch (error) {
+    console.error('Error saving possible purchases to localStorage:', error);
+  }
+};
+
+/**
  * VehicleProvider Component
  * Manages global vehicle state and provides CRUD operations
  */
 export const VehicleProvider: React.FC<VehicleProviderProps> = ({ children }) => {
   const [vehicles, setVehicles] = useState<Vehicle[]>(INITIAL_VEHICLES);
+  const [possiblePurchaseIds, setPossiblePurchaseIds] = useState<Set<string>>(loadPossiblePurchases);
+
+  /**
+   * Persist possible purchases to localStorage whenever they change
+   */
+  useEffect(() => {
+    savePossiblePurchases(possiblePurchaseIds);
+  }, [possiblePurchaseIds]);
 
   /**
    * Get all vehicles
@@ -127,15 +170,65 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({ children }) =>
       return filtered;
     });
 
+    // Also remove from possible purchases if it was marked
+    if (wasDeleted && possiblePurchaseIds.has(id)) {
+      setPossiblePurchaseIds((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
+    }
+
     return wasDeleted;
+  };
+
+  /**
+   * Mark a vehicle as a possible purchase
+   */
+  const markForPurchase = (vehicleId: string): void => {
+    setPossiblePurchaseIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(vehicleId);
+      return newSet;
+    });
+  };
+
+  /**
+   * Unmark a vehicle from possible purchases
+   */
+  const unmarkForPurchase = (vehicleId: string): void => {
+    setPossiblePurchaseIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(vehicleId);
+      return newSet;
+    });
+  };
+
+  /**
+   * Check if a vehicle is marked for possible purchase
+   */
+  const isMarkedForPurchase = (vehicleId: string): boolean => {
+    return possiblePurchaseIds.has(vehicleId);
+  };
+
+  /**
+   * Get all vehicles marked for possible purchase
+   */
+  const getPossiblePurchases = (): Vehicle[] => {
+    return vehicles.filter((vehicle) => possiblePurchaseIds.has(vehicle.id));
   };
 
   const contextValue: VehicleContextValue = {
     vehicles,
+    possiblePurchaseIds,
     getVehicles,
     addVehicle,
     updateVehicle,
     deleteVehicle,
+    markForPurchase,
+    unmarkForPurchase,
+    isMarkedForPurchase,
+    getPossiblePurchases,
   };
 
   return (

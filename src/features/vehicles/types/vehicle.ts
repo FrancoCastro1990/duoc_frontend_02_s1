@@ -10,6 +10,7 @@ export interface Vehicle {
   year: number;
   image: string;
   description: string;
+  markedForPurchase?: boolean;
 }
 
 /**

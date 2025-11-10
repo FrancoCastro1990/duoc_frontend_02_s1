@@ -1,8 +1,12 @@
-import { CheckCircle, DollarSign, Wrench, FileText } from 'lucide-react';
+import { CheckCircle, DollarSign, Wrench, FileText, Heart } from 'lucide-react';
 import { useVehicleCatalog } from '../hooks/useVehicleCatalog';
+import { useVehicles } from '@/features/vehicles';
+import { useVehicleDetail, VehicleDetailModal } from '@/features/vehicle-detail';
 
 function VehicleCatalog() {
   const { catalogVehicles, featuredVehicle } = useVehicleCatalog();
+  const { markForPurchase, unmarkForPurchase, isMarkedForPurchase } = useVehicles();
+  const { isOpen, selectedVehicle, openDetail, closeDetail } = useVehicleDetail();
 
   return (
     <div className="animate-fade-in">
@@ -54,7 +58,18 @@ function VehicleCatalog() {
             <p className="text-primary-500 text-[1.05rem] leading-relaxed mb-8 md:text-[0.95rem]">
               {featuredVehicle.description}
             </p>
-            <button className="bg-gradient-primary text-white font-bold rounded-xl px-5 py-[0.65rem] shadow-md transition-all duration-300 ease-smooth border-none cursor-pointer text-[0.95rem] tracking-wide hover:-translate-y-1 hover:shadow-xl">
+            <button
+              onClick={() => openDetail({
+                id: featuredVehicle.id,
+                brand: featuredVehicle.brand,
+                model: featuredVehicle.model,
+                price: featuredVehicle.originalPrice,
+                year: featuredVehicle.year,
+                image: featuredVehicle.image,
+                description: featuredVehicle.description
+              })}
+              className="bg-gradient-primary text-white font-bold rounded-xl px-5 py-[0.65rem] shadow-md transition-all duration-300 ease-smooth border-none cursor-pointer text-[0.95rem] tracking-wide hover:-translate-y-1 hover:shadow-xl"
+            >
               Ver Detalles
             </button>
           </div>
@@ -110,13 +125,48 @@ function VehicleCatalog() {
                 </div>
 
                 {/* Footer */}
-                <div className="flex justify-between items-center pt-5 border-t-2 border-primary-100">
-                  <span className="text-secondary-800 text-[1.6rem] font-extrabold md:text-[1.35rem]">
-                    {vehicle.price}
-                  </span>
-                  <button className="bg-transparent text-secondary-800 font-bold border-2 border-secondary-800 rounded-xl px-5 py-[0.65rem] cursor-pointer transition-all duration-300 ease-smooth text-[0.95rem] tracking-wide hover:bg-secondary-800 hover:text-white hover:shadow-md md:px-4 md:py-[0.6rem] md:text-sm">
-                    Ver Más
-                  </button>
+                <div className="pt-5 border-t-2 border-primary-100">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-secondary-800 text-[1.6rem] font-extrabold md:text-[1.35rem]">
+                      {vehicle.price}
+                    </span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button
+                      onClick={() => openDetail({
+                        id: vehicle.id,
+                        brand: vehicle.brand,
+                        model: vehicle.model,
+                        price: vehicle.originalPrice,
+                        year: vehicle.year,
+                        image: vehicle.image,
+                        description: vehicle.description
+                      })}
+                      className="flex-1 bg-transparent text-secondary-800 font-bold border-2 border-secondary-800 rounded-xl px-5 py-[0.65rem] cursor-pointer transition-all duration-300 ease-smooth text-[0.95rem] tracking-wide hover:bg-secondary-800 hover:text-white hover:shadow-md md:px-4 md:py-[0.6rem] md:text-sm"
+                    >
+                      Ver Más
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (isMarkedForPurchase(vehicle.id)) {
+                          unmarkForPurchase(vehicle.id);
+                        } else {
+                          markForPurchase(vehicle.id);
+                        }
+                      }}
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 font-bold border-2 rounded-xl px-5 py-[0.65rem] cursor-pointer transition-all duration-300 ease-smooth text-[0.95rem] tracking-wide md:px-4 md:py-[0.6rem] md:text-sm ${
+                        isMarkedForPurchase(vehicle.id)
+                          ? 'bg-secondary-800 border-secondary-800 text-white hover:bg-secondary-900 hover:border-secondary-900'
+                          : 'bg-transparent border-secondary-800 text-secondary-800 hover:bg-secondary-800 hover:text-white hover:shadow-md'
+                      }`}
+                    >
+                      <Heart
+                        className="w-4 h-4"
+                        fill={isMarkedForPurchase(vehicle.id) ? 'currentColor' : 'none'}
+                      />
+                      {isMarkedForPurchase(vehicle.id) ? 'Marcado' : 'Marcar'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,6 +241,13 @@ function VehicleCatalog() {
           </div>
         </div>
       </section>
+
+      {/* Vehicle Detail Modal */}
+      <VehicleDetailModal
+        vehicle={selectedVehicle}
+        isOpen={isOpen}
+        onClose={closeDetail}
+      />
     </div>
   );
 }

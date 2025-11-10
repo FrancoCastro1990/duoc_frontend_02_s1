@@ -10,8 +10,10 @@ export interface CatalogVehicle {
   id: string;
   name: string;
   brand: string;
+  model: string;
   year: number;
   price: string;
+  originalPrice: number;
   image: string;
   type: string;
   features: string[];
@@ -23,8 +25,13 @@ export interface CatalogVehicle {
  * Represents the highlighted vehicle of the month
  */
 export interface FeaturedVehicle {
+  id: string;
   name: string;
+  brand: string;
+  model: string;
+  year: number;
   price: string;
+  originalPrice: number;
   image: string;
   description: string;
 }
@@ -142,8 +149,10 @@ const transformToCatalogVehicle = (vehicle: Vehicle): CatalogVehicle => {
     id: vehicle.id,
     name: vehicle.model,
     brand: vehicle.brand,
+    model: vehicle.model,
     year: vehicle.year,
     price: formatPrice(vehicle.price),
+    originalPrice: vehicle.price,
     image: vehicle.image,
     type,
     features,
@@ -180,8 +189,13 @@ export const useVehicleCatalog = () => {
   const featuredVehicle = useMemo<FeaturedVehicle>(() => {
     if (vehicles.length === 0) {
       return {
+        id: '',
         name: 'No hay vehículos disponibles',
+        brand: '',
+        model: '',
+        year: 0,
         price: '$0',
+        originalPrice: 0,
         image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=500&fit=crop',
         description: 'Pronto tendremos vehículos disponibles para ti.',
       };
@@ -193,8 +207,13 @@ export const useVehicleCatalog = () => {
     );
 
     return {
+      id: mostExpensive.id,
       name: `${mostExpensive.brand} ${mostExpensive.model}`,
+      brand: mostExpensive.brand,
+      model: mostExpensive.model,
+      year: mostExpensive.year,
       price: formatPrice(mostExpensive.price),
+      originalPrice: mostExpensive.price,
       image: mostExpensive.image,
       description: mostExpensive.description,
     };

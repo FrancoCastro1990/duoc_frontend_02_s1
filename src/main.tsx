@@ -9,6 +9,7 @@ import { AboutUs } from './features/about'
 import { Contact } from './features/contact'
 import { AddVehicle } from './features/add-vehicle'
 import { VehicleInventory } from './features/vehicle-inventory'
+import { PossiblePurchase } from './features/possible-purchase'
 import { VehicleProvider } from './features/vehicles'
 
 createRoot(document.getElementById('root')!).render(
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="contactanos" element={<Contact />} />
             <Route path="agregar-vehiculo" element={<AddVehicle />} />
             <Route path="inventario" element={<VehicleInventory />} />
+            <Route path="posibles-compras" element={<PossiblePurchase />} />
           </Route>
         </Routes>
       </BrowserRouter>

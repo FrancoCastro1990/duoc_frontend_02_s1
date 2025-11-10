@@ -19,7 +19,7 @@ export type SortOrder = 'asc' | 'desc';
  * Separates business logic from UI presentation
  */
 export const useVehicleInventory = () => {
-  const { vehicles: allVehicles, deleteVehicle } = useVehicles();
+  const { vehicles: allVehicles, deleteVehicle, isMarkedForPurchase } = useVehicles();
 
   // Sorting state
   const [sortField, setSortField] = useState<SortField>('brand');
@@ -82,12 +82,13 @@ export const useVehicleInventory = () => {
    * Memoized for performance
    */
   const vehicles = useMemo(() => {
-    // Filter by search term (brand or model)
-    let filtered = allVehicles;
+    // First, filter out vehicles marked for possible purchase
+    let filtered = allVehicles.filter((vehicle) => !isMarkedForPurchase(vehicle.id));
 
+    // Then filter by search term (brand or model)
     if (searchTerm.trim()) {
       const lowerSearchTerm = searchTerm.toLowerCase();
-      filtered = allVehicles.filter(
+      filtered = filtered.filter(
         (vehicle) =>
           vehicle.brand.toLowerCase().includes(lowerSearchTerm) ||
           vehicle.model.toLowerCase().includes(lowerSearchTerm)
@@ -132,7 +133,7 @@ export const useVehicleInventory = () => {
     });
 
     return sorted;
-  }, [allVehicles, searchTerm, sortField, sortOrder]);
+  }, [allVehicles, searchTerm, sortField, sortOrder, isMarkedForPurchase]);
 
   /**
    * Format price to Chilean peso format
