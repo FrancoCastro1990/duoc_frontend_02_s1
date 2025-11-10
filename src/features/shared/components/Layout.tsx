@@ -1,8 +1,19 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Home, Info, Phone, PlusCircle, List, ShoppingCart } from 'lucide-react';
+import { FloatingMenu, type MenuItem } from '@/features/floating-menu';
 
 function Layout() {
   const location = useLocation();
+
+  // Define menu items for FloatingMenu
+  const menuItems: MenuItem[] = [
+    { path: '/', icon: Home, label: 'Inicio' },
+    { path: '/quienes-somos', icon: Info, label: 'Quiénes Somos' },
+    { path: '/contactanos', icon: Phone, label: 'Contáctanos' },
+    { path: '/agregar-vehiculo', icon: PlusCircle, label: 'Agregar' },
+    { path: '/inventario', icon: List, label: 'Inventario' },
+    { path: '/posibles-compras', icon: ShoppingCart, label: 'Posibles Compras' },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-primary-50">
@@ -24,8 +35,11 @@ function Layout() {
         <Outlet />
       </main>
 
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-[100] flex justify-around items-center bg-white border-t-[3px] border-accent-400 shadow-[0_-4px_24px_rgba(15,23,42,0.15)] backdrop-blur-[10px] px-2 py-3 md:py-2">
+      {/* Floating Menu - Mobile Only */}
+      <FloatingMenu items={menuItems} />
+
+      {/* Bottom Navigation - Desktop Only */}
+      <nav className="hidden md:flex fixed bottom-0 left-0 right-0 z-[100] justify-around items-center bg-white border-t-[3px] border-accent-400 shadow-[0_-4px_24px_rgba(15,23,42,0.15)] backdrop-blur-[10px] px-2 py-3 md:py-2">
         <Link
           to="/"
           className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${

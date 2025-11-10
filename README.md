@@ -37,6 +37,15 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 ### Funcionalidades Adicionales
 
+**Menú Flotante Radial (Mobile Only)** ✨ NUEVO
+- ✓ Botón flotante circular en mobile con animación expandible
+- ✓ Menú radial que se despliega en arco semi-circular hacia arriba
+- ✓ 6 iconos circulares con navegación a diferentes secciones
+- ✓ Animaciones suaves de apertura/cierre con backdrop blur
+- ✓ Sombras premium para visibilidad sobre cualquier fondo
+- ✓ Configurable vía props (rutas e iconos personalizables)
+- ✓ Reemplazo de navegación inferior en mobile (desktop mantiene nav tradicional)
+
 **Estado Global con Context API**
 - ✓ VehicleContext implementado para gestión centralizada de vehículos
 - ✓ CRUD completo: crear, leer, actualizar y eliminar vehículos
@@ -46,7 +55,7 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 **Screaming Architecture**
 - ✓ Estructura organizada por features/dominios de negocio
-- ✓ Separación clara: vehicles, about, contact, add-vehicle, vehicle-inventory, shared
+- ✓ Separación clara: vehicles, about, contact, add-vehicle, vehicle-inventory, floating-menu, shared
 - ✓ Cada feature es auto-contenida con sus componentes, tipos, hooks y páginas
 - ✓ Barrel exports para importaciones limpias
 - ✓ Escalabilidad mejorada para crecimiento futuro
@@ -56,6 +65,7 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - ✓ `useContactForm()` - Gestión de formulario de contacto con validación
 - ✓ `useAddVehicleForm()` - Gestión de formulario para agregar vehículos con validación completa
 - ✓ `useVehicleInventory()` - Gestión de tabla de inventario con sorting y búsqueda
+- ✓ `useFloatingMenu()` - Gestión de menú flotante con cálculos de posición radial ✨ NUEVO
 - ✓ Separación completa entre lógica de negocio y presentación
 - ✓ Hooks reutilizables y testables independientemente
 - ✓ Integración con VehicleContext para fuente única de verdad
@@ -119,7 +129,10 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 ### Características Técnicas
 
-- **Navegación inferior fija** - Accesible desde cualquier punto de la página con backdrop blur
+- **Navegación Dual Responsive** ✨ NUEVO
+  - **Mobile**: Menú flotante radial con animación circular expandible
+  - **Desktop**: Navegación inferior fija tradicional con backdrop blur
+  - Ambos con indicador visual de página activa
 - **Diseño responsive** - Mobile-first adaptable a móviles, tablets y desktop
 - **Animaciones suaves** - Transiciones y efectos hover con utility classes
 - **Tipado con TypeScript** - Mayor seguridad y mantenibilidad del código
@@ -139,7 +152,7 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
   - Lógica de negocio reutilizable y testeable
   - Integración con VehicleContext para fuente única de verdad
 - **Screaming Architecture** - Organización por features/dominios:
-  - Features: vehicles, about, contact, add-vehicle, vehicle-inventory, shared
+  - Features: vehicles, about, contact, add-vehicle, vehicle-inventory, floating-menu, shared
   - Cada feature auto-contenida con componentes, tipos, hooks, páginas
   - Barrel exports para API pública limpia
   - Path alias `@` para imports limpios
@@ -196,6 +209,12 @@ duoc_frontend_02_s1/
 │   │   │   │   └── useVehicleInventory.ts # Hook con sorting y búsqueda
 │   │   │   ├── pages/
 │   │   │   │   └── VehicleInventory.tsx   # Tabla de inventario
+│   │   │   └── index.ts
+│   │   ├── floating-menu/         # Feature de Menú Flotante ✨ NUEVO
+│   │   │   ├── components/
+│   │   │   │   └── FloatingMenu.tsx       # Menú radial animado
+│   │   │   ├── hooks/
+│   │   │   │   └── useFloatingMenu.ts     # Hook con cálculos de posición
 │   │   │   └── index.ts
 │   │   └── shared/                # Componentes compartidos
 │   │       ├── components/
@@ -551,6 +570,118 @@ const {
 type SortField = 'brand' | 'model' | 'price' | 'year';
 type SortOrder = 'asc' | 'desc';
 ```
+
+### useFloatingMenu - Hook de Menú Flotante Radial ✨ NUEVO
+
+**Ubicación:** `src/features/floating-menu/hooks/useFloatingMenu.ts`
+
+Gestiona el menú flotante circular con posicionamiento radial matemático para mobile.
+
+#### Características
+
+- Gestión de estado open/closed
+- Navegación con React Router
+- **Cálculos matemáticos de posición radial** (conversión polar a cartesiano)
+- Posicionamiento en arco semi-circular (180°) hacia arriba
+- Radio de 130px para óptima separación visual
+- Auto-cierre después de navegación
+
+#### Uso
+
+```typescript
+import { useFloatingMenu } from '@/features/floating-menu';
+
+const {
+  isOpen,            // boolean - estado del menú
+  toggleMenu,        // () => void - toggle open/close
+  handleItemClick,   // (path: string) => void - navegar y cerrar
+  getItemPosition    // (index: number, total: number) => Position
+} = useFloatingMenu();
+
+// Obtener posición de un item
+const position = getItemPosition(0, 6); // { x: number, y: number }
+```
+
+#### Algoritmo de Posicionamiento
+
+El hook calcula posiciones circulares usando matemáticas polares:
+
+```typescript
+// Radio desde el botón central
+const radius = 130; // px
+
+// Ángulo para cada item en el arco de 180°
+const angleStep = Math.PI / (totalItems + 1);
+const angle = angleStep * (index + 1);
+
+// Conversión polar → cartesiano
+const x = Math.cos(angle) * radius;
+const y = -Math.sin(angle) * radius; // Negativo = hacia arriba
+```
+
+#### Tipos
+
+```typescript
+interface Position {
+  x: number;
+  y: number;
+}
+
+interface UseFloatingMenuReturn {
+  isOpen: boolean;
+  toggleMenu: () => void;
+  handleItemClick: (path: string) => void;
+  getItemPosition: (index: number, totalItems: number) => Position;
+}
+```
+
+### FloatingMenu Component - Uso ✨ NUEVO
+
+**Ubicación:** `src/features/floating-menu/components/FloatingMenu.tsx`
+
+Componente visual del menú flotante radial.
+
+#### Props Interface
+
+```typescript
+interface MenuItem {
+  path: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  label: string;
+}
+
+interface FloatingMenuProps {
+  items: MenuItem[];
+}
+```
+
+#### Ejemplo de Uso en Layout
+
+```typescript
+import { FloatingMenu, type MenuItem } from '@/features/floating-menu';
+import { Home, Info, Phone, PlusCircle, List, ShoppingCart } from 'lucide-react';
+
+const menuItems: MenuItem[] = [
+  { path: '/', icon: Home, label: 'Inicio' },
+  { path: '/quienes-somos', icon: Info, label: 'Quiénes Somos' },
+  { path: '/contactanos', icon: Phone, label: 'Contáctanos' },
+  { path: '/agregar-vehiculo', icon: PlusCircle, label: 'Agregar' },
+  { path: '/inventario', icon: List, label: 'Inventario' },
+  { path: '/posibles-compras', icon: ShoppingCart, label: 'Posibles Compras' },
+];
+
+<FloatingMenu items={menuItems} />
+```
+
+#### Características Visuales
+
+- **Botón Principal**: 64x64px con `bg-gradient-secondary` y sombra premium
+- **Botones del Menú**: 56x56px con borde azul y efecto hover dorado
+- **Animaciones**: Scale-in escalonado (50ms delay entre items)
+- **Backdrop**: Blur semi-transparente cuando está abierto
+- **Posición**: `fixed bottom-6` centrado horizontalmente
+- **Visibilidad**: Solo mobile (`md:hidden`)
+- **Z-Index**: 50 (sobre todo el contenido)
 
 ### Beneficios de los Custom Hooks
 
