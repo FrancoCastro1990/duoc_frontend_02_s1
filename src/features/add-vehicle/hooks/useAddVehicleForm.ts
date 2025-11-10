@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
-import { useVehicles } from '../../vehicles';
-import type { CreateVehicleInput } from '../../vehicles';
+import { useVehicles } from '@/features/vehicles';
+import type { CreateVehicleInput } from '@/features/vehicles';
 
 /**
  * Form Data Interface

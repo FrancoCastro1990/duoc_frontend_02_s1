@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Info, Phone } from 'lucide-react';
+import { Home, Info, Phone, PlusCircle, List } from 'lucide-react';
 
 function Layout() {
   const location = useLocation();
@@ -75,6 +75,40 @@ function Layout() {
             size={24}
           />
           <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Contáctanos</span>
+        </Link>
+
+        <Link
+          to="/agregar-vehiculo"
+          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+            location.pathname === '/agregar-vehiculo'
+              ? 'bg-gradient-primary text-white shadow-md'
+              : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
+          }`}
+        >
+          <PlusCircle
+            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+              location.pathname === '/agregar-vehiculo' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
+            }`}
+            size={24}
+          />
+          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Agregar</span>
+        </Link>
+
+        <Link
+          to="/inventario"
+          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+            location.pathname === '/inventario'
+              ? 'bg-gradient-primary text-white shadow-md'
+              : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
+          }`}
+        >
+          <List
+            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+              location.pathname === '/inventario' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
+            }`}
+            size={24}
+          />
+          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Inventario</span>
         </Link>
       </nav>
     </div>

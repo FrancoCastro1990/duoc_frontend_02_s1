@@ -4,7 +4,7 @@ Proyecto desarrollado para la **Evaluación Formativa 1** del curso **Desarrollo
 
 ## Descripción del Proyecto
 
-AutoVentas Premium es un sitio web moderno desarrollado con React que permite la venta de vehículos nuevos y seminuevos. El proyecto implementa navegación con React Router, proporcionando una experiencia de usuario fluida y profesional.
+AutoVentas Premium es un sitio web moderno desarrollado con React que permite la venta de vehículos nuevos y seminuevos. El proyecto implementa navegación con React Router, gestión de estado global con Context API, y una arquitectura escalable basada en features de negocio (Screaming Architecture).
 
 ## Tecnologías Utilizadas
 
@@ -23,7 +23,7 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 **Criterio 1: Navegación con React Router (50 puntos)**
 - ✓ React Router correctamente instalado y configurado
-- ✓ Navegación funcional entre 3 páginas
+- ✓ Navegación funcional entre 5 páginas
 - ✓ Menú de navegación inferior fijo y responsive
 - ✓ Rutas configuradas con BrowserRouter
 - ✓ Indicador visual de página activa
@@ -46,44 +46,76 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 
 **Screaming Architecture**
 - ✓ Estructura organizada por features/dominios de negocio
-- ✓ Separación clara: vehicles, about, contact, shared
-- ✓ Cada feature es auto-contenida con sus componentes, tipos y contextos
+- ✓ Separación clara: vehicles, about, contact, add-vehicle, vehicle-inventory, shared
+- ✓ Cada feature es auto-contenida con sus componentes, tipos, hooks y páginas
 - ✓ Barrel exports para importaciones limpias
 - ✓ Escalabilidad mejorada para crecimiento futuro
 
 **Custom Hooks para Separación de Lógica y UI**
 - ✓ `useVehicleCatalog()` - Gestión de catálogo con transformación de datos
 - ✓ `useContactForm()` - Gestión de formulario de contacto con validación
+- ✓ `useAddVehicleForm()` - Gestión de formulario para agregar vehículos con validación completa
+- ✓ `useVehicleInventory()` - Gestión de tabla de inventario con sorting y búsqueda
 - ✓ Separación completa entre lógica de negocio y presentación
 - ✓ Hooks reutilizables y testables independientemente
 - ✓ Integración con VehicleContext para fuente única de verdad
 
+**Path Alias Configuration**
+- ✓ Alias `@` configurado en TypeScript y Vite
+- ✓ Imports limpios: `import { useVehicles } from '@/features/vehicles'`
+- ✓ Mejor experiencia de desarrollo con autocompletado
+- ✓ Rutas absolutas desde `src/` para imports cross-feature
+
 ### Páginas Desarrolladas
 
-#### 1. Home (Página Principal)
+#### 1. Home (Página Principal) - `/`
 - Banner hero con título y descripción
 - Vehículo destacado del mes con oferta especial
-- Catálogo de 6 vehículos con:
+- Catálogo de vehículos con:
   - Imágenes de alta calidad
   - Información detallada (marca, modelo, año, precio)
   - Características destacadas
   - Tipo de vehículo (Sedán, SUV, Deportivo, Eléctrico)
 - Sección de beneficios (garantía, financiamiento, servicio, documentación)
 
-#### 2. Quiénes Somos
+#### 2. Quiénes Somos - `/quienes-somos`
 - Historia de la empresa
 - Misión y Visión corporativa
 - 6 valores corporativos con iconografía
 - Estadísticas de logros (años de experiencia, clientes, sucursales)
 - Información del equipo profesional
 
-#### 3. Contáctanos
+#### 3. Contáctanos - `/contactanos`
 - Formulario de contacto completo con validación
 - Información de contacto (dirección, teléfonos, emails)
 - Horarios de atención
 - Enlaces a redes sociales
 - Sección de ubicación
 - Preguntas frecuentes (FAQ)
+
+#### 4. Agregar Vehículo - `/agregar-vehiculo` ✨ NUEVO
+- Formulario completo para agregar nuevos vehículos al inventario
+- 6 campos: Marca, Modelo, Precio, Año, URL de Imagen, Descripción
+- Validación en tiempo real:
+  - Todos los campos requeridos
+  - Precio debe ser mayor a 0
+  - Año entre 1900-2030
+- Integración con VehicleContext
+- Mensaje de éxito y reset automático del formulario
+- Estados de carga y disabled durante envío
+
+#### 5. Inventario - `/inventario` ✨ NUEVO
+- Tabla completa con todos los vehículos del inventario
+- Columnas: Imagen, Marca, Modelo, Año, Precio, Acciones
+- Características avanzadas:
+  - **Búsqueda en tiempo real** por marca o modelo
+  - **Ordenamiento** por cualquier columna (↑/↓)
+  - **Eliminación** con confirmación inline
+  - **Contador** de vehículos encontrados
+  - **Formato** de precios en pesos chilenos
+  - **Thumbnails** de imágenes
+  - **Diseño responsive** con scroll horizontal en móvil
+- Estados vacíos manejados elegantemente
 
 ### Características Técnicas
 
@@ -101,13 +133,16 @@ AutoVentas Premium es un sitio web moderno desarrollado con React que permite la
 - **Custom Hooks para Separación de Lógica** - Patrón de separación de responsabilidades:
   - `useVehicleCatalog()` - Transformación de datos y lógica de catálogo
   - `useContactForm()` - Gestión de formulario con validación
+  - `useAddVehicleForm()` - Gestión de formulario de agregar vehículo
+  - `useVehicleInventory()` - Gestión de tabla con sorting y búsqueda
   - Componentes enfocados exclusivamente en presentación
   - Lógica de negocio reutilizable y testeable
   - Integración con VehicleContext para fuente única de verdad
 - **Screaming Architecture** - Organización por features/dominios:
-  - Features: vehicles, about, contact, shared
-  - Cada feature auto-contenida con componentes, tipos, contextos
+  - Features: vehicles, about, contact, add-vehicle, vehicle-inventory, shared
+  - Cada feature auto-contenida con componentes, tipos, hooks, páginas
   - Barrel exports para API pública limpia
+  - Path alias `@` para imports limpios
 - **Tailwind CSS v4** - Sistema de diseño personalizado con:
   - Paleta de colores premium (Slate, Blue, Gold)
   - Gradientes personalizados para hero sections y CTAs
@@ -150,6 +185,18 @@ duoc_frontend_02_s1/
 │   │   │   ├── pages/
 │   │   │   │   └── Contact.tsx
 │   │   │   └── index.ts
+│   │   ├── add-vehicle/           # Feature de Agregar Vehículo ✨ NUEVO
+│   │   │   ├── hooks/
+│   │   │   │   └── useAddVehicleForm.ts  # Hook con validación y submit
+│   │   │   ├── pages/
+│   │   │   │   └── AddVehicle.tsx        # Formulario para agregar
+│   │   │   └── index.ts
+│   │   ├── vehicle-inventory/     # Feature de Inventario ✨ NUEVO
+│   │   │   ├── hooks/
+│   │   │   │   └── useVehicleInventory.ts # Hook con sorting y búsqueda
+│   │   │   ├── pages/
+│   │   │   │   └── VehicleInventory.tsx   # Tabla de inventario
+│   │   │   └── index.ts
 │   │   └── shared/                # Componentes compartidos
 │   │       ├── components/
 │   │       │   ├── Layout.tsx
@@ -158,6 +205,8 @@ duoc_frontend_02_s1/
 │   │       └── index.ts
 │   ├── main.tsx                   # Punto de entrada con rutas y providers
 │   └── index.css                  # Configuración Tailwind v4 + theme
+├── vite.config.ts                 # Configuración Vite con path alias
+├── tsconfig.app.json              # TypeScript config con path alias
 ├── tailwind.config.js             # Configuración mínima de Tailwind
 ├── postcss.config.js              # PostCSS con Tailwind y Autoprefixer
 ├── tailwind.d.ts                  # Tipos TypeScript para Tailwind
@@ -168,7 +217,7 @@ duoc_frontend_02_s1/
 
 ### Ventajas de Screaming Architecture
 
-1. **Claridad de propósito** - La estructura comunica qué hace la aplicación (vehículos, about, contacto)
+1. **Claridad de propósito** - La estructura comunica qué hace la aplicación
 2. **Aislamiento de features** - Cada feature es auto-contenida con componentes, hooks, tipos
 3. **Escalabilidad** - Agregar nuevas features es directo y predecible
 4. **Mantenibilidad** - Código relacionado está agrupado (componente + hook + tipos)
@@ -192,12 +241,12 @@ duoc_frontend_02_s1/
         └──────────→ Custom Hooks ←───┘
                     (business logic)
                           ↓
-              ┌───────────┼───────────┐
-              ↓           ↓           ↓
-      useVehicleCatalog useContactForm  ...
-              ↓           ↓
-        Components   Components
-        (UI only)    (UI only)
+        ┌─────────────────┼─────────────────┐
+        ↓                 ↓                  ↓
+useVehicleCatalog  useAddVehicleForm  useVehicleInventory
+        ↓                 ↓                  ↓
+   Components        Components         Components
+   (UI only)         (UI only)          (UI only)
 ```
 
 ## Sistema de Diseño (Tailwind Theme)
@@ -210,6 +259,7 @@ El proyecto utiliza un theme personalizado de Tailwind CSS v4 optimizado para un
 - **Secondary (Blue)**: Azul tecnológico para CTAs y elementos interactivos
 - **Accent (Gold)**: Dorado premium para highlights y badges especiales
 - **Neutrals**: Escala de grises para backgrounds y UI subtle
+- **Semantic**: Success (green), Error (red), Warning (orange)
 
 ### Gradientes Personalizados
 
@@ -238,6 +288,61 @@ El proyecto utiliza un theme personalizado de Tailwind CSS v4 optimizado para un
 - Font family: **Montserrat Variable** (light, medium, semibold, bold, extrabold)
 - Escala responsive con breakpoint `md:` (768px)
 
+## Path Alias Configuration
+
+El proyecto está configurado con el alias `@` para imports más limpios y mantenibles:
+
+### Configuración
+
+**TypeScript (`tsconfig.app.json`):**
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+**Vite (`vite.config.ts`):**
+```typescript
+import path from 'path'
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  }
+})
+```
+
+### Uso de Path Alias
+
+**Cross-feature imports** (entre features):
+```typescript
+import { useVehicles } from '@/features/vehicles';
+import { VehicleCatalog } from '@/features/vehicles';
+import { AddVehicle } from '@/features/add-vehicle';
+import { VehicleInventory } from '@/features/vehicle-inventory';
+import type { Vehicle, CreateVehicleInput } from '@/features/vehicles';
+```
+
+**Intra-feature imports** (dentro del mismo feature):
+```typescript
+// Usar rutas relativas
+import { useAddVehicleForm } from '../hooks/useAddVehicleForm';
+```
+
+### Beneficios
+
+- ✓ Imports más limpios y legibles
+- ✓ Facilita refactorización de estructura
+- ✓ Mejor autocompletado en IDEs
+- ✓ Evita rutas relativas complejas (`../../..`)
+
 ## Uso del VehicleContext (Estado Global)
 
 El proyecto implementa gestión de estado global usando React Context API para manejar los vehículos.
@@ -246,7 +351,7 @@ El proyecto implementa gestión de estado global usando React Context API para m
 
 ```typescript
 interface Vehicle {
-  id: string | number;
+  id: string;
   brand: string;        // Marca
   model: string;        // Modelo
   price: number;        // Precio
@@ -285,12 +390,12 @@ function MyComponent() {
   };
 
   // Actualizar un vehículo
-  const handleUpdate = (id: string | number) => {
+  const handleUpdate = (id: string) => {
     updateVehicle(id, { price: 26000000 });
   };
 
   // Eliminar un vehículo
-  const handleDelete = (id: string | number) => {
+  const handleDelete = (id: string) => {
     deleteVehicle(id);
   };
 
@@ -307,7 +412,7 @@ function MyComponent() {
 
 ## Custom Hooks - Separación de Lógica y UI
 
-El proyecto implementa el patrón de **separación de responsabilidades** mediante custom hooks que extraen la lógica de negocio de los componentes, dejándolos enfocados únicamente en la presentación.
+El proyecto implementa el patrón de **separación de responsabilidades** mediante custom hooks que extraen la lógica de negocio de los componentes.
 
 ### useVehicleCatalog - Hook de Gestión de Catálogo
 
@@ -317,142 +422,144 @@ Este hook integra el VehicleContext y agrega lógica de transformación para el 
 
 #### Características
 
-- **Integración con VehicleContext**: Consume vehículos del estado global
-- **Transformación de datos**: Convierte datos básicos en formato de catálogo
-- **Formateo de precios**: Formato chileno ($28.990.000)
-- **Detección de tipo**: Categoriza vehículos (SUV, Sedán, Eléctrico, Híbrido, Deportivo)
-- **Extracción de características**: Analiza descripciones para extraer features
-- **Vehículo destacado**: Selecciona dinámicamente el vehículo más caro
-- **Funciones utilitarias**: Filtrado por año, tipo y marca
+- Integración con VehicleContext
+- Transformación de datos a formato de catálogo
+- Formateo de precios chilenos ($28.990.000)
+- Detección de tipo de vehículo (SUV, Sedán, Eléctrico, etc.)
+- Extracción de características desde descripción
+- Selección de vehículo destacado (más caro)
+- Funciones utilitarias de filtrado
 
-#### Uso en componentes
+#### Uso
 
 ```typescript
 import { useVehicleCatalog } from '@/features/vehicles';
 
-function VehicleCatalog() {
-  const {
-    catalogVehicles,      // Vehículos transformados para catálogo
-    featuredVehicle,      // Vehículo destacado del mes
-    addVehicle,           // Agregar vehículo al contexto
-    updateVehicle,        // Actualizar vehículo
-    deleteVehicle,        // Eliminar vehículo
-    getVehicleCount,      // Obtener cantidad total
-    getVehiclesByType,    // Filtrar por tipo
-    getVehiclesByBrand,   // Filtrar por marca
-    getVehiclesByYear,    // Filtrar por año
-    getAvailableTypes,    // Obtener tipos únicos
-    getAvailableBrands    // Obtener marcas únicas
-  } = useVehicleCatalog();
-
-  return (
-    <div>
-      {catalogVehicles.map(vehicle => (
-        <VehicleCard key={vehicle.id} vehicle={vehicle} />
-      ))}
-    </div>
-  );
-}
-```
-
-#### Tipos exportados
-
-```typescript
-interface CatalogVehicle {
-  id: string;
-  name: string;          // "Brand Model"
-  brand: string;         // Marca
-  year: number;          // Año
-  price: string;         // Precio formateado "$28.990.000"
-  image: string;         // URL de imagen
-  type: string;          // SUV, Sedán, Eléctrico, etc.
-  features: string[];    // Características extraídas
-  description: string;   // Descripción completa
-}
-
-interface FeaturedVehicle {
-  id: string;
-  name: string;
-  brand: string;
-  model: string;
-  year: number;
-  price: string;
-  image: string;
-  originalPrice: string;
-  discount: string;
-  savings: string;
-}
+const {
+  catalogVehicles,      // Vehículos transformados
+  featuredVehicle,      // Vehículo destacado
+  addVehicle,           // CRUD operations
+  updateVehicle,
+  deleteVehicle,
+  getVehicleCount,      // Utilidades
+  getVehiclesByType,
+  getVehiclesByBrand
+} = useVehicleCatalog();
 ```
 
 ### useContactForm - Hook de Gestión de Formulario
 
 **Ubicación:** `src/features/contact/hooks/useContactForm.ts`
 
-Este hook encapsula toda la lógica del formulario de contacto, incluyendo estado, validación y envío.
+Encapsula toda la lógica del formulario de contacto.
 
 #### Características
 
-- **Gestión de estado del formulario**: 5 campos (nombre, email, teléfono, asunto, mensaje)
-- **Manejo de cambios**: Handler unificado para todos los inputs
-- **Envío de formulario**: Lógica de submit con prevención de default
-- **Estado de éxito**: Mensaje de confirmación temporal (3 segundos)
-- **Reset automático**: Limpia el formulario después del envío exitoso
-- **TypeScript estricto**: Tipos para todos los datos y eventos
+- Gestión de estado (5 campos)
+- Manejo de cambios en inputs
+- Submit con prevención de default
+- Estado de éxito temporal (3s)
+- Reset automático
 
-#### Uso en componentes
+#### Uso
 
 ```typescript
 import { useContactForm } from '@/features/contact';
 
-function Contact() {
-  const {
-    formData,      // { nombre, email, telefono, asunto, mensaje }
-    submitted,     // boolean - indica si el formulario fue enviado
-    handleSubmit,  // Función para manejar el submit
-    handleChange   // Función para manejar cambios en inputs
-  } = useContactForm();
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="nombre"
-        value={formData.nombre}
-        onChange={handleChange}
-      />
-      <input
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      {/* ...más campos... */}
-      <button type="submit">Enviar</button>
-      {submitted && <p>¡Mensaje enviado con éxito!</p>}
-    </form>
-  );
-}
+const {
+  formData,      // { nombre, email, telefono, asunto, mensaje }
+  submitted,     // boolean
+  handleSubmit,  // submit handler
+  handleChange   // change handler
+} = useContactForm();
 ```
 
-#### Tipo exportado
+### useAddVehicleForm - Hook de Formulario de Agregar ✨ NUEVO
+
+**Ubicación:** `src/features/add-vehicle/hooks/useAddVehicleForm.ts`
+
+Gestiona el formulario para agregar nuevos vehículos al inventario.
+
+#### Características
+
+- Gestión de estado (6 campos: brand, model, price, year, image, description)
+- Validación completa en tiempo real:
+  - Todos los campos requeridos
+  - Precio > 0
+  - Año entre 1900-2030
+- Integración con VehicleContext
+- Mensajes de error por campo
+- Estado de loading durante envío
+- Mensaje de éxito y reset automático (3s)
+
+#### Uso
 
 ```typescript
-interface ContactFormData {
-  nombre: string;
-  email: string;
-  telefono: string;
-  asunto: string;
-  mensaje: string;
-}
+import { useAddVehicleForm } from '@/features/add-vehicle';
+
+const {
+  formData,        // { brand, model, price, year, image, description }
+  errors,          // { brand?: string, model?: string, ... }
+  submitted,       // boolean - éxito
+  isSubmitting,    // boolean - loading
+  handleChange,    // input change handler
+  handleSubmit,    // form submit handler
+  resetForm        // reset manual
+} = useAddVehicleForm();
+```
+
+### useVehicleInventory - Hook de Tabla de Inventario ✨ NUEVO
+
+**Ubicación:** `src/features/vehicle-inventory/hooks/useVehicleInventory.ts`
+
+Gestiona la tabla de inventario con funcionalidades avanzadas.
+
+#### Características
+
+- Integración con VehicleContext
+- **Sorting** por columna (brand, model, price, year)
+- **Orden** ascendente/descendente
+- **Búsqueda** en tiempo real por marca o modelo
+- **Confirmación** de eliminación inline
+- **Formato** de precios chilenos
+- Indicadores visuales de sort (↑/↓)
+
+#### Uso
+
+```typescript
+import { useVehicleInventory } from '@/features/vehicle-inventory';
+
+const {
+  vehicles,          // Vehículos filtrados y ordenados
+  sortField,         // Campo actual de sort
+  sortOrder,         // 'asc' | 'desc'
+  searchTerm,        // Término de búsqueda
+  vehicleToDelete,   // ID pendiente de eliminar
+  handleSort,        // (field: SortField) => void
+  handleSearch,      // (term: string) => void
+  confirmDelete,     // (id: string) => void
+  cancelDelete,      // () => void
+  handleDelete,      // () => void
+  formatPrice,       // (price: number) => string
+  getSortIndicator   // (field: SortField) => string
+} = useVehicleInventory();
+```
+
+#### Tipos
+
+```typescript
+type SortField = 'brand' | 'model' | 'price' | 'year';
+type SortOrder = 'asc' | 'desc';
 ```
 
 ### Beneficios de los Custom Hooks
 
-1. **Separación de responsabilidades**: Lógica separada de la presentación
-2. **Reutilización**: Los hooks pueden usarse en múltiples componentes
-3. **Testabilidad**: Los hooks se pueden testear independientemente
-4. **Mantenibilidad**: Cambios en lógica no requieren tocar el UI
-5. **Legibilidad**: Componentes más limpios y enfocados en JSX
-6. **Type Safety**: TypeScript garantiza tipos correctos en toda la cadena
+1. **Separación de responsabilidades** - Lógica separada de presentación
+2. **Reutilización** - Hooks usables en múltiples componentes
+3. **Testabilidad** - Testeo independiente de lógica
+4. **Mantenibilidad** - Cambios en lógica no afectan UI
+5. **Legibilidad** - Componentes más limpios
+6. **Type Safety** - TypeScript garantiza tipos correctos
 
 ## Instalación y Ejecución
 
@@ -487,16 +594,18 @@ http://localhost:5173
 
 ```bash
 npm run dev      # Inicia servidor de desarrollo
-npm run build    # Compila para producción
+npm run build    # Compila TypeScript y genera build de producción
 npm run preview  # Vista previa de la build de producción
 npm run lint     # Ejecuta el linter ESLint
 ```
 
 ## Rutas de Navegación
 
-- `/` - Página principal (Home)
+- `/` - Página principal (Catálogo de vehículos)
 - `/quienes-somos` - Información de la empresa
 - `/contactanos` - Formulario de contacto
+- `/agregar-vehiculo` - Agregar nuevo vehículo ✨ NUEVO
+- `/inventario` - Tabla de inventario de vehículos ✨ NUEVO
 
 ## Cumplimiento de la Rúbrica de Evaluación
 
@@ -506,12 +615,16 @@ npm run lint     # Ejecuta el linter ESLint
 - Configuración en main.tsx con BrowserRouter
 - Routes y Route configurados apropiadamente
 - Navegación funcional sin errores
+- 5 páginas completamente funcionales
 
 ✅ **Componente frontend cumple todos los requerimientos**
-- 3 páginas completamente funcionales
-- Menú de navegación inferior
+- 5 páginas completamente funcionales (3 requeridas + 2 adicionales)
+- Menú de navegación inferior fijo y responsive
 - Contenido relevante y completo en cada página
 - Diseño profesional y responsive
+- CRUD completo de vehículos
+- Formularios con validación
+- Tabla de inventario con funcionalidades avanzadas
 
 ## Autor
 
@@ -522,7 +635,8 @@ Franco Castro Villanueva - Desarrollo Frontend II (PFY2202)
 Este proyecto fue creado con Vite + React + TypeScript + Tailwind CSS v4, proporcionando:
 - Hot Module Replacement (HMR) para desarrollo rápido
 - Build optimizado para producción con tree-shaking de CSS
-- TypeScript para desarrollo type-safe
+- TypeScript para desarrollo type-safe con path aliases
 - Tailwind CSS v4 con CSS-first configuration
 - PostCSS para procesamiento de CSS moderno
 - Sistema de diseño personalizado para marca automotriz premium
+- Arquitectura escalable basada en features de negocio

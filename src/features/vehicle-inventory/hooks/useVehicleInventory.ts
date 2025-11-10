@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useVehicles } from '../../vehicles';
-import type { Vehicle } from '../../vehicles';
+import { useVehicles } from '@/features/vehicles';
 
 /**
  * Sort field type union
