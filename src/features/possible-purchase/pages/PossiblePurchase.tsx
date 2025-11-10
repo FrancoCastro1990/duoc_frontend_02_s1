@@ -21,27 +21,27 @@ export const PossiblePurchase: React.FC = () => {
   const hasVehicles = vehicleCount > 0;
 
   return (
-    <div className="min-h-screen bg-neutral-50 py-8 px-4 md:px-8">
+    <div className="min-h-screen bg-neutral-50 py-6 px-4 sm:py-8 md:px-6 lg:px-8">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto mb-10">
-        <div className="bg-gradient-primary text-white rounded-3xl p-8 md:p-12 shadow-premium">
-          <div className="flex items-center gap-4 mb-4">
-            <ShoppingCart className="w-10 h-10 md:w-12 md:h-12" />
-            <h1 className="text-3xl md:text-5xl font-bold">
+      <div className="max-w-7xl mx-auto mb-8 sm:mb-10">
+        <div className="bg-gradient-primary rounded-3xl p-6 shadow-premium sm:p-8 md:p-10 lg:p-12">
+          <div className="flex items-center gap-3 mb-3 sm:gap-4 sm:mb-4">
+            <ShoppingCart className="w-8 h-8 text-white sm:w-10 sm:h-10 md:w-12 md:h-12" />
+            <h1 className="text-white text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
               Vehículos para Posible Compra
             </h1>
           </div>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 mt-6">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-3 mt-4 sm:gap-4 sm:mt-6 md:flex-row md:gap-6 lg:gap-8">
+            <div className="flex items-center gap-2 text-white">
               <ShoppingCart className="w-5 h-5" />
-              <span className="text-lg md:text-xl">
+              <span className="text-base sm:text-lg md:text-xl">
                 <strong>{vehicleCount}</strong> vehículo{vehicleCount !== 1 ? 's' : ''} seleccionado{vehicleCount !== 1 ? 's' : ''}
               </span>
             </div>
             {hasVehicles && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-white">
                 <DollarSign className="w-5 h-5" />
-                <span className="text-lg md:text-xl">
+                <span className="text-base sm:text-lg md:text-xl">
                   Total: <strong>{getFormattedTotal()}</strong>
                 </span>
               </div>
@@ -55,27 +55,27 @@ export const PossiblePurchase: React.FC = () => {
         {!hasVehicles ? (
           // Empty State
           <EmptyState
-            icon={<ShoppingCart className="w-20 h-20" />}
+            icon={<ShoppingCart className="w-16 h-16 sm:w-20 sm:h-20" />}
             title="No hay vehículos marcados"
             description="Explora nuestro catálogo y marca los vehículos que te interesen para compararlos aquí."
-            className="bg-white rounded-3xl p-12 md:p-16 shadow-md"
+            className="bg-white rounded-3xl p-8 shadow-md sm:p-12 md:p-16"
           />
         ) : (
           // Vehicle Grid
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {possiblePurchaseVehicles.map((vehicle) => (
               <div
                 key={vehicle.id}
                 className="bg-white rounded-[20px] shadow-md hover:shadow-premium transition-all duration-300 overflow-hidden"
               >
                 {/* Vehicle Image */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden sm:h-64">
                   <img
                     src={vehicle.image}
                     alt={`${vehicle.brand} ${vehicle.model}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 right-4">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                     <Badge variant="accent" className="shadow-glow">
                       {vehicle.year}
                     </Badge>
@@ -83,16 +83,16 @@ export const PossiblePurchase: React.FC = () => {
                 </div>
 
                 {/* Vehicle Details */}
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold text-primary-900 mb-2">
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-xl font-bold text-primary-900 mb-2 sm:text-2xl">
                     {vehicle.brand} {vehicle.model}
                   </h3>
 
-                  <p className="text-2xl md:text-3xl font-bold text-secondary-800 mb-4">
+                  <p className="text-2xl font-bold text-secondary-800 mb-4 sm:text-3xl">
                     {formatPrice(vehicle.price)}
                   </p>
 
-                  <p className="text-neutral-700 text-sm md:text-base mb-6 line-clamp-3">
+                  <p className="text-neutral-700 text-sm mb-5 line-clamp-3 sm:text-base sm:mb-6">
                     {vehicle.description.length > 100
                       ? `${vehicle.description.substring(0, 100)}...`
                       : vehicle.description}
@@ -103,7 +103,7 @@ export const PossiblePurchase: React.FC = () => {
                     variant="danger"
                     fullWidth
                     onClick={() => unmarkVehicle(vehicle.id)}
-                    className="flex items-center justify-center gap-2"
+                    className="flex items-center justify-center gap-2 min-h-[44px]"
                   >
                     <Trash2 className="w-5 h-5" />
                     Desmarcar

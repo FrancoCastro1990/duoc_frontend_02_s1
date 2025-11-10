@@ -42,11 +42,11 @@ export const Button: React.FC<ButtonProps> = ({
     success: 'bg-success-600 hover:bg-success-700 text-white shadow-md hover:shadow-lg',
   };
 
-  // Size styles
+  // Size styles - mobile-first responsive
   const sizeStyles = {
-    sm: 'px-4 py-2 text-sm rounded-lg',
-    md: 'px-6 py-3 text-base rounded-xl',
-    lg: 'px-10 py-5 text-lg rounded-xl',
+    sm: 'px-3 py-2 text-sm rounded-lg sm:px-4',
+    md: 'px-5 py-3 text-base rounded-xl sm:px-6',
+    lg: 'px-8 py-4 text-base rounded-xl sm:px-10 sm:py-5 sm:text-lg',
   };
 
   // Disabled/loading state

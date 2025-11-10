@@ -16,10 +16,10 @@ function Contact() {
       />
 
       {/* Contact Container - Info & Form */}
-      <div className="grid grid-cols-[1fr_1.5fr] gap-10 mb-10 lg:grid-cols-1">
+      <div className="grid grid-cols-1 gap-8 mb-10 lg:grid-cols-[1fr_1.5fr] lg:gap-10">
         {/* Contact Info Sidebar */}
-        <div className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-10 py-10 h-fit md:px-6">
-          <h3 className="text-primary-900 text-[2rem] font-bold m-0 mb-8 md:text-2xl">
+        <div className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-6 h-fit sm:px-8 sm:py-8 md:px-10 md:py-10">
+          <h3 className="text-primary-900 text-xl font-bold m-0 mb-6 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-8">
             Información de Contacto
           </h3>
 
@@ -63,21 +63,21 @@ function Contact() {
           />
 
           {/* Social Media */}
-          <div className="mt-10 pt-8 border-t-[3px] border-accent-400">
-            <h4 className="text-primary-900 font-bold m-0 mb-5">
+          <div className="mt-8 pt-6 border-t-[3px] border-accent-400 sm:mt-10 sm:pt-8">
+            <h4 className="text-primary-900 text-base font-bold m-0 mb-4 sm:text-lg sm:mb-5">
               Síguenos en Redes Sociales
             </h4>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-              <a href="#" className="flex items-center gap-3 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-[0.95rem] px-4 py-4 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 md:px-[0.85rem] md:text-sm">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+              <a href="#" className="flex items-center gap-2 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-sm px-3 py-3 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 min-h-[44px] sm:gap-3 sm:px-4 sm:py-4 md:text-[0.95rem]">
                 <Facebook size={20} strokeWidth={2} /> Facebook
               </a>
-              <a href="#" className="flex items-center gap-3 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-[0.95rem] px-4 py-4 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 md:px-[0.85rem] md:text-sm">
+              <a href="#" className="flex items-center gap-2 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-sm px-3 py-3 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 min-h-[44px] sm:gap-3 sm:px-4 sm:py-4 md:text-[0.95rem]">
                 <Instagram size={20} strokeWidth={2} /> Instagram
               </a>
-              <a href="#" className="flex items-center gap-3 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-[0.95rem] px-4 py-4 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 md:px-[0.85rem] md:text-sm">
+              <a href="#" className="flex items-center gap-2 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-sm px-3 py-3 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 min-h-[44px] sm:gap-3 sm:px-4 sm:py-4 md:text-[0.95rem]">
                 <Twitter size={20} strokeWidth={2} /> Twitter
               </a>
-              <a href="#" className="flex items-center gap-3 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-[0.95rem] px-4 py-4 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 md:px-[0.85rem] md:text-sm">
+              <a href="#" className="flex items-center gap-2 bg-primary-50 border-2 border-transparent rounded-xl no-underline text-primary-800 font-semibold text-sm px-3 py-3 transition-all duration-300 ease-smooth hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md hover:border-secondary-800 min-h-[44px] sm:gap-3 sm:px-4 sm:py-4 md:text-[0.95rem]">
                 <Linkedin size={20} strokeWidth={2} /> LinkedIn
               </a>
             </div>
@@ -85,11 +85,11 @@ function Contact() {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-10 py-10 md:px-6">
-          <h3 className="text-primary-900 text-[2rem] font-bold m-0 mb-3 md:text-2xl">
+        <div className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
+          <h3 className="text-primary-900 text-xl font-bold m-0 mb-2 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-3">
             Envíanos un Mensaje
           </h3>
-          <p className="text-primary-500 text-[1.05rem] m-0 mb-8">
+          <p className="text-primary-500 text-[0.95rem] m-0 mb-6 sm:text-base md:text-[1.05rem] md:mb-8">
             Completa el formulario y nos pondremos en contacto contigo lo antes posible
           </p>
 
@@ -117,7 +117,7 @@ function Contact() {
             />
 
             {/* Email & Phone Row */}
-            <div className="grid grid-cols-2 gap-6 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormInput
                 label="Email"
                 name="email"
@@ -143,7 +143,7 @@ function Contact() {
 
             {/* Subject */}
             <div className="flex flex-col">
-              <label htmlFor="asunto" className="text-primary-900 font-bold text-[0.95rem] mb-3">
+              <label htmlFor="asunto" className="text-primary-900 font-bold text-sm mb-2 sm:text-[0.95rem] sm:mb-3">
                 Asunto *
               </label>
               <select
@@ -152,7 +152,7 @@ function Contact() {
                 value={formData.asunto}
                 onChange={handleChange}
                 required
-                className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-base px-5 py-4 transition-all duration-300 ease-smooth focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white md:px-4 md:py-[0.85rem] md:text-[0.95rem]"
+                className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-[0.95rem] px-4 py-3 transition-all duration-300 ease-smooth focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white min-h-[44px] sm:px-5 sm:py-4 sm:text-base"
               >
                 <option value="">Selecciona un asunto</option>
                 <option value="consulta">Consulta General</option>
@@ -191,17 +191,17 @@ function Contact() {
       </div>
 
       {/* Map Section */}
-      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-12 py-12 mb-10 md:px-6">
-        <h3 className="text-primary-900 text-[2rem] font-bold text-center m-0 mb-8 md:text-2xl">
+      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-6 mb-10 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-12 lg:py-12">
+        <h3 className="text-primary-900 text-xl font-bold text-center m-0 mb-6 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-8">
           Nuestra Ubicación
         </h3>
-        <div className="bg-primary-50 rounded-2xl border-2 border-dashed border-secondary-800 px-10 py-20 md:px-6 md:py-12">
+        <div className="bg-primary-50 rounded-2xl border-2 border-dashed border-secondary-800 px-6 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20">
           <div className="text-center">
-            <MapPinned className="block mx-auto mb-6 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]" size={64} strokeWidth={1.5} />
-            <p className="text-primary-800 text-[1.15rem] font-semibold my-3 md:text-base">
+            <MapPinned className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)] sm:mb-6" size={56} strokeWidth={1.5} />
+            <p className="text-primary-800 text-base font-semibold my-3 sm:text-lg md:text-[1.15rem]">
               Av. Providencia 1234, Providencia, Santiago
             </p>
-            <p className="text-primary-500 text-[0.95rem] italic font-normal mt-5">
+            <p className="text-primary-500 text-sm italic font-normal mt-4 sm:text-[0.95rem] sm:mt-5">
               * Mapa interactivo disponible próximamente
             </p>
           </div>
@@ -209,43 +209,43 @@ function Contact() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-12 py-12 md:px-6">
-        <h3 className="text-primary-900 text-[2rem] font-bold text-center m-0 mb-8 md:text-2xl">
+      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-12 lg:py-12">
+        <h3 className="text-primary-900 text-xl font-bold text-center m-0 mb-6 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-8">
           Preguntas Frecuentes
         </h3>
-        <div className="grid grid-cols-2 gap-7 md:grid-cols-1">
-          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-8 py-8 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] md:px-6">
-            <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-4 md:text-[1.05rem]">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
+          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-5 py-5 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] sm:px-6 sm:py-6 md:px-8 md:py-8">
+            <h4 className="text-primary-900 text-base font-bold m-0 mb-3 sm:text-[1.05rem] sm:mb-4 md:text-[1.15rem]">
               ¿Tienen vehículos usados?
             </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
+            <p className="text-primary-500 text-sm leading-relaxed m-0 sm:text-[0.95rem]">
               Sí, contamos con una amplia selección de vehículos seminuevos certificados con garantía.
             </p>
           </div>
 
-          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-8 py-8 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] md:px-6">
-            <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-4 md:text-[1.05rem]">
+          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-5 py-5 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] sm:px-6 sm:py-6 md:px-8 md:py-8">
+            <h4 className="text-primary-900 text-base font-bold m-0 mb-3 sm:text-[1.05rem] sm:mb-4 md:text-[1.15rem]">
               ¿Ofrecen financiamiento?
             </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
+            <p className="text-primary-500 text-sm leading-relaxed m-0 sm:text-[0.95rem]">
               Sí, trabajamos con diversas instituciones financieras para ofrecerte las mejores tasas.
             </p>
           </div>
 
-          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-8 py-8 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] md:px-6">
-            <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-4 md:text-[1.05rem]">
+          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-5 py-5 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] sm:px-6 sm:py-6 md:px-8 md:py-8">
+            <h4 className="text-primary-900 text-base font-bold m-0 mb-3 sm:text-[1.05rem] sm:mb-4 md:text-[1.15rem]">
               ¿Puedo agendar una prueba de manejo?
             </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
+            <p className="text-primary-500 text-sm leading-relaxed m-0 sm:text-[0.95rem]">
               Por supuesto, puedes agendarla contactándonos o visitando nuestra sucursal.
             </p>
           </div>
 
-          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-8 py-8 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] md:px-6">
-            <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-4 md:text-[1.05rem]">
+          <div className="bg-primary-50 rounded-xl shadow-sm border-l-4 border-secondary-800 px-5 py-5 transition-all duration-300 ease-smooth hover:translate-x-2 hover:shadow-md hover:bg-white hover:border-l-[6px] sm:px-6 sm:py-6 md:px-8 md:py-8">
+            <h4 className="text-primary-900 text-base font-bold m-0 mb-3 sm:text-[1.05rem] sm:mb-4 md:text-[1.15rem]">
               ¿Reciben vehículos en parte de pago?
             </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
+            <p className="text-primary-500 text-sm leading-relaxed m-0 sm:text-[0.95rem]">
               Sí, tasamos tu vehículo actual y lo recibimos como parte de pago.
             </p>
           </div>

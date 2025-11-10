@@ -49,60 +49,60 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-3 animate-fade-in sm:p-4"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-4xl bg-white rounded-[20px] shadow-premium overflow-hidden animate-scale-in">
+      <div className="relative w-full max-w-4xl bg-white rounded-[20px] shadow-premium overflow-hidden animate-scale-in max-h-[95vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-gradient-accent rounded-full shadow-glow hover:shadow-xl transition-all duration-300"
+          className="absolute top-3 right-3 z-10 p-2 bg-gradient-accent rounded-full shadow-glow hover:shadow-xl transition-all duration-300 sm:top-4 sm:right-4 sm:p-3"
           aria-label="Close modal"
         >
-          <X className="w-6 h-6 text-primary-900" />
+          <X className="w-5 h-5 text-primary-900 sm:w-6 sm:h-6" />
         </button>
 
         {/* Modal content */}
-        <div className="flex flex-col md:flex-row gap-0">
+        <div className="flex flex-col lg:flex-row gap-0">
           {/* Vehicle image */}
-          <div className="w-full md:w-1/2 bg-neutral-100">
+          <div className="w-full lg:w-1/2 bg-neutral-100">
             <img
               src={vehicle.image}
               alt={`${vehicle.brand} ${vehicle.model}`}
-              className="w-full h-64 md:h-full object-cover"
+              className="w-full h-64 object-cover sm:h-80 lg:h-full"
             />
           </div>
 
           {/* Vehicle details */}
-          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
-            <div className="mb-6">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-3">
+          <div className="w-full lg:w-1/2 p-6 flex flex-col justify-center sm:p-8 lg:p-10">
+            <div className="mb-5 sm:mb-6">
+              <h2 className="text-xl font-bold text-primary-900 mb-3 sm:text-2xl md:text-3xl">
                 {vehicle.brand} {vehicle.model}
               </h2>
-              <span className="inline-block bg-gradient-accent text-primary-900 px-4 py-2 rounded-lg font-bold shadow-glow text-sm">
+              <span className="inline-block bg-gradient-accent text-primary-900 px-3 py-2 rounded-lg font-bold shadow-glow text-sm sm:px-4">
                 Año {vehicle.year}
               </span>
             </div>
 
-            <div className="mb-6">
-              <p className="text-sm font-semibold text-neutral-600 mb-2 uppercase tracking-wide">
+            <div className="mb-5 sm:mb-6">
+              <p className="text-xs font-semibold text-neutral-600 mb-2 uppercase tracking-wide sm:text-sm">
                 Precio
               </p>
-              <p className="text-3xl md:text-4xl font-bold text-secondary-800">
+              <p className="text-2xl font-bold text-secondary-800 sm:text-3xl md:text-4xl">
                 {formatPrice(vehicle.price)}
               </p>
             </div>
 
-            <div className="mb-6">
-              <p className="text-sm font-semibold text-primary-900 mb-3 uppercase tracking-wide">
+            <div className="mb-5 sm:mb-6">
+              <p className="text-xs font-semibold text-primary-900 mb-2 uppercase tracking-wide sm:text-sm sm:mb-3">
                 Descripción
               </p>
-              <p className="text-[0.95rem] md:text-[1.05rem] text-neutral-700 leading-relaxed">
+              <p className="text-sm text-neutral-700 leading-relaxed sm:text-[0.95rem] md:text-[1.05rem]">
                 {vehicle.description}
               </p>
             </div>
 
-            <div className="mt-auto pt-6 border-t border-neutral-200">
+            <div className="mt-auto pt-5 border-t border-neutral-200 sm:pt-6">
               <button
                 onClick={() => {
                   if (isMarkedForPurchase(vehicle.id)) {
@@ -111,7 +111,7 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                     markForPurchase(vehicle.id);
                   }
                 }}
-                className={`w-full flex items-center justify-center gap-2 font-semibold py-3 px-6 rounded-xl transition-all duration-300 mb-3 border-2 ${
+                className={`w-full flex items-center justify-center gap-2 font-semibold py-3 px-4 rounded-xl transition-all duration-300 mb-3 border-2 min-h-[44px] sm:px-6 ${
                   isMarkedForPurchase(vehicle.id)
                     ? 'bg-secondary-800 border-secondary-800 text-white hover:bg-secondary-900 hover:border-secondary-900 hover:shadow-premium'
                     : 'bg-transparent border-secondary-800 text-secondary-800 hover:bg-secondary-800 hover:text-white hover:shadow-premium'
@@ -121,11 +121,13 @@ export const VehicleDetailModal: React.FC<VehicleDetailModalProps> = ({
                   className="w-5 h-5"
                   fill={isMarkedForPurchase(vehicle.id) ? 'currentColor' : 'none'}
                 />
-                {isMarkedForPurchase(vehicle.id) ? 'Marcado para Posible Compra' : 'Marcar para Posible Compra'}
+                <span className="text-sm sm:text-base">
+                  {isMarkedForPurchase(vehicle.id) ? 'Marcado para Posible Compra' : 'Marcar para Posible Compra'}
+                </span>
               </button>
               <button
                 onClick={onClose}
-                className="w-full bg-neutral-200 hover:bg-neutral-300 text-primary-900 font-semibold py-3 px-6 rounded-xl transition-all duration-300"
+                className="w-full bg-neutral-200 hover:bg-neutral-300 text-primary-900 font-semibold py-3 px-4 rounded-xl transition-all duration-300 min-h-[44px] sm:px-6"
               >
                 Cerrar
               </button>

@@ -24,11 +24,11 @@ export const PageHero: React.FC<PageHeroProps> = ({
   showAccentBorder = false,
   children,
 }) => {
-  // Variant styles
+  // Variant styles - mobile-first (text colors handled separately for proper contrast)
   const variantStyles = {
-    gradient: 'bg-gradient-primary text-white p-8 md:p-12 rounded-3xl shadow-lg',
-    white: 'bg-white text-primary-900 px-10 py-16 md:px-6 md:py-8 rounded-[20px] shadow-xl',
-    'gradient-overlay': 'bg-gradient-primary text-white p-8 md:p-12 rounded-3xl shadow-lg relative overflow-hidden',
+    gradient: 'bg-gradient-primary p-6 rounded-3xl shadow-lg sm:p-8 md:p-10 lg:p-12',
+    white: 'bg-white px-6 py-8 rounded-[20px] shadow-xl sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-10 lg:py-16',
+    'gradient-overlay': 'bg-gradient-primary p-6 rounded-3xl shadow-lg relative overflow-hidden sm:p-8 md:p-10 lg:p-12',
   };
 
   // Alignment styles
@@ -48,6 +48,10 @@ export const PageHero: React.FC<PageHeroProps> = ({
     ${className}
   `.trim().replace(/\s+/g, ' ');
 
+  // Text color classes based on variant - ensures proper contrast
+  const textColorClass = variant === 'white' ? 'text-primary-900' : 'text-white';
+  const subtitleColorClass = variant === 'white' ? 'text-primary-500' : 'text-white';
+
   return (
     <div className={heroClassName}>
       {variant === 'gradient-overlay' && (
@@ -55,12 +59,12 @@ export const PageHero: React.FC<PageHeroProps> = ({
       )}
 
       <div className="relative z-10">
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">
+        <h1 className={`${textColorClass} text-2xl font-bold mb-3 animate-fade-in sm:text-3xl md:text-4xl lg:text-5xl lg:mb-4`}>
           {title}
         </h1>
 
         {subtitle && (
-          <p className="text-[1.05rem] md:text-[1.15rem] opacity-90 mb-6 animate-fade-in-down">
+          <p className={`${subtitleColorClass} text-base opacity-90 mb-5 animate-fade-in-down sm:text-[1.05rem] md:text-[1.15rem] md:mb-6`}>
             {subtitle}
           </p>
         )}

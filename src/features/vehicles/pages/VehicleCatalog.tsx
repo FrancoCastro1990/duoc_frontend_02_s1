@@ -21,32 +21,32 @@ function VehicleCatalog() {
       />
 
       {/* Featured Vehicle Section */}
-      <section className="relative bg-white rounded-[20px] shadow-lg border border-secondary-100 px-10 py-10 mb-10 md:px-6">
+      <section className="relative bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-8 mb-10 md:px-8 md:py-10 lg:px-10">
         <Badge
           variant="accent"
           size="md"
-          className="absolute -top-3 right-6 shadow-md"
+          className="absolute -top-3 right-4 shadow-md md:right-6"
         >
           OFERTA ESPECIAL
         </Badge>
 
-        <h3 className="text-primary-900 text-[2rem] font-bold m-0 mb-8 md:text-2xl">
+        <h3 className="text-primary-900 text-xl font-bold m-0 mb-6 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-8">
           Vehículo Destacado del Mes
         </h3>
 
-        <div className="grid grid-cols-2 gap-10 items-center md:grid-cols-1 md:gap-6">
+        <div className="grid grid-cols-1 gap-6 items-center md:grid-cols-2 md:gap-8 lg:gap-10">
           <img
             src={featuredVehicle.image}
             alt="Featured"
-            className="w-full h-[350px] object-cover rounded-2xl shadow-md transition-transform duration-[400ms] ease-smooth hover:scale-[1.02] md:h-[220px]"
+            className="w-full h-[220px] object-cover rounded-2xl shadow-md transition-transform duration-[400ms] ease-smooth hover:scale-[1.02] sm:h-[280px] md:h-[300px] lg:h-[350px]"
           />
 
           <div>
-            <h4 className="text-primary-900 text-4xl font-extrabold m-0 mb-3 md:text-2xl">
+            <h4 className="text-primary-900 text-2xl font-extrabold m-0 mb-3 sm:text-3xl lg:text-4xl">
               {featuredVehicle.name}
             </h4>
             <p
-              className="text-[2.5rem] font-extrabold mb-5 md:text-[1.75rem]"
+              className="text-[1.75rem] font-extrabold mb-4 sm:text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] lg:mb-5"
               style={{
                 background: 'linear-gradient(135deg, #0F172A 0%, #1E40AF 100%)',
                 WebkitBackgroundClip: 'text',
@@ -56,7 +56,7 @@ function VehicleCatalog() {
             >
               {featuredVehicle.price}
             </p>
-            <p className="text-primary-500 text-[1.05rem] leading-relaxed mb-8 md:text-[0.95rem]">
+            <p className="text-primary-500 text-[0.95rem] leading-relaxed mb-6 sm:text-base md:text-[1.05rem] lg:mb-8">
               {featuredVehicle.description}
             </p>
             <Button
@@ -78,19 +78,19 @@ function VehicleCatalog() {
       </section>
 
       {/* Vehicles Catalog Section */}
-      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-10 py-10 mb-10 md:px-6">
-        <h3 className="text-primary-900 text-[2rem] font-bold m-0 mb-8 md:text-2xl">
+      <section className="bg-white rounded-[20px] shadow-lg border border-secondary-100 px-6 py-8 mb-10 md:px-8 md:py-10 lg:px-10">
+        <h3 className="text-primary-900 text-xl font-bold m-0 mb-6 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-8">
           Nuestro Catálogo
         </h3>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {catalogVehicles.map(vehicle => (
             <div
               key={vehicle.id}
               className="bg-primary-50 rounded-2xl overflow-hidden shadow-sm border-2 border-transparent transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-secondary-800"
             >
               {/* Vehicle Image */}
-              <div className="relative h-[220px] overflow-hidden bg-primary-900">
+              <div className="relative h-[220px] overflow-hidden bg-primary-900 sm:h-[200px] md:h-[220px]">
                 <img
                   src={vehicle.image}
                   alt={vehicle.name}
@@ -109,11 +109,11 @@ function VehicleCatalog() {
               </div>
 
               {/* Vehicle Info */}
-              <div className="bg-white px-7 py-7 md:px-5">
-                <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-2 md:text-xl">
+              <div className="bg-white px-5 py-5 sm:px-6 sm:py-6 lg:px-7 lg:py-7">
+                <h4 className="text-primary-900 text-xl font-bold m-0 mb-2 md:text-[1.3rem] lg:text-[1.4rem]">
                   {vehicle.brand} {vehicle.name}
                 </h4>
-                <p className="text-primary-500 text-[0.95rem] font-medium m-0 mb-4">
+                <p className="text-primary-500 text-sm font-medium m-0 mb-4 md:text-[0.95rem]">
                   Año {vehicle.year}
                 </p>
 
@@ -133,7 +133,7 @@ function VehicleCatalog() {
                 {/* Footer */}
                 <div className="pt-5 border-t-2 border-primary-100">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-secondary-800 text-[1.6rem] font-extrabold md:text-[1.35rem]">
+                    <span className="text-secondary-800 text-[1.35rem] font-extrabold sm:text-[1.45rem] lg:text-[1.6rem]">
                       {vehicle.price}
                     </span>
                   </div>
@@ -162,7 +162,7 @@ function VehicleCatalog() {
                           markForPurchase(vehicle.id);
                         }
                       }}
-                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 font-bold border-2 rounded-xl px-5 py-[0.65rem] cursor-pointer transition-all duration-300 ease-smooth text-[0.95rem] tracking-wide md:px-4 md:py-[0.6rem] md:text-sm ${
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 font-bold border-2 rounded-xl px-4 py-[0.6rem] cursor-pointer transition-all duration-300 ease-smooth text-sm tracking-wide min-h-[44px] sm:min-h-0 md:px-5 md:py-[0.65rem] md:text-[0.95rem] ${
                         isMarkedForPurchase(vehicle.id)
                           ? 'bg-secondary-800 border-secondary-800 text-white hover:bg-secondary-900 hover:border-secondary-900'
                           : 'bg-transparent border-secondary-800 text-secondary-800 hover:bg-secondary-800 hover:text-white hover:shadow-md'
@@ -183,15 +183,15 @@ function VehicleCatalog() {
       </section>
 
       {/* Benefits Section */}
-      <section className="relative overflow-hidden bg-gradient-primary rounded-[20px] shadow-xl px-10 py-12 md:px-6 md:py-8">
+      <section className="relative overflow-hidden bg-gradient-primary rounded-[20px] shadow-xl px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
         {/* Decorative overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.05) 0%, transparent 100%)' }} />
 
-        <h3 className="relative text-white text-[2rem] font-bold text-center m-0 mb-10 md:text-2xl">
+        <h3 className="relative text-white text-xl font-bold text-center m-0 mb-8 sm:text-2xl md:text-3xl lg:text-[2rem] lg:mb-10">
           ¿Por qué elegirnos?
         </h3>
 
-        <div className="relative grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
+        <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <FeatureCard
             icon={<CheckCircle size={48} strokeWidth={1.5} />}
             title="Garantía Certificada"

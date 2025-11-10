@@ -48,28 +48,28 @@ const VehicleInventory: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 py-6 animate-fade-in sm:py-8 md:py-10 lg:py-12">
       {/* Page header */}
       <PageHero
-        title="Vehicle Inventory"
-        subtitle="Manage and view all vehicles in the catalog"
+        title="Inventario de Vehículos"
+        subtitle="Gestiona y visualiza todos los vehículos del catálogo"
         variant="gradient"
       />
 
       {/* Search bar */}
-      <div className="bg-white rounded-2xl p-6 shadow-md mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="bg-white rounded-2xl p-4 shadow-md mb-6 flex flex-col gap-3 sm:p-6 sm:flex-row sm:justify-between sm:items-center sm:gap-4">
         <div className="flex-1 max-w-md w-full">
           <input
             type="text"
-            className="w-full border-2 border-neutral-300 focus:border-secondary-800 focus:shadow-[0_0_0_3px_rgba(30,64,175,0.1)] rounded-xl px-4 py-3 transition-all placeholder:text-neutral-400"
-            placeholder="Search by brand or model..."
+            className="w-full border-2 border-neutral-300 focus:border-secondary-800 focus:shadow-[0_0_0_3px_rgba(30,64,175,0.1)] rounded-xl px-4 py-3 transition-all placeholder:text-neutral-400 text-base min-h-[44px]"
+            placeholder="Buscar por marca o modelo..."
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
-            aria-label="Search vehicles by brand or model"
+            aria-label="Buscar vehículos por marca o modelo"
           />
         </div>
-        <span className="text-sm md:text-base text-neutral-600 font-medium">
-          {vehicles.length} vehicle{vehicles.length !== 1 ? 's' : ''} found
+        <span className="text-sm text-neutral-600 font-medium sm:text-base">
+          {vehicles.length} vehículo{vehicles.length !== 1 ? 's' : ''} encontrado{vehicles.length !== 1 ? 's' : ''}
         </span>
       </div>
 
@@ -79,8 +79,8 @@ const VehicleInventory: React.FC = () => {
           // Empty state
           <EmptyState
             title={searchTerm
-              ? `No vehicles found matching "${searchTerm}"`
-              : 'No vehicles in inventory'}
+              ? `No se encontraron vehículos que coincidan con "${searchTerm}"`
+              : 'No hay vehículos en el inventario'}
             description=""
           />
         ) : (
@@ -89,60 +89,62 @@ const VehicleInventory: React.FC = () => {
             <table className="w-full">
               <thead className="bg-gradient-primary text-white">
                 <tr>
-                  <th className="px-6 py-4 text-center text-sm md:text-base font-bold">Image</th>
-                  {renderColumnHeader('brand', 'Brand')}
-                  {renderColumnHeader('model', 'Model')}
-                  {renderColumnHeader('year', 'Year')}
-                  {renderColumnHeader('price', 'Price')}
-                  <th className="px-6 py-4 text-left text-sm md:text-base font-bold">Actions</th>
+                  <th className="px-6 py-4 text-center text-sm md:text-base font-bold">Imagen</th>
+                  {renderColumnHeader('brand', 'Marca')}
+                  {renderColumnHeader('model', 'Modelo')}
+                  {renderColumnHeader('year', 'Año')}
+                  {renderColumnHeader('price', 'Precio')}
+                  <th className="px-6 py-4 text-left text-sm md:text-base font-bold">Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {vehicles.map((vehicle) => (
                   <tr key={vehicle.id} className="border-b border-neutral-200 last:border-b-0 hover:bg-neutral-50 transition-colors">
                     {/* Image thumbnail */}
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-4 py-3 text-center sm:px-6 sm:py-4">
                       <img
                         src={vehicle.image}
                         alt={`${vehicle.brand} ${vehicle.model}`}
-                        className="w-16 h-16 rounded-lg object-cover shadow-sm mx-auto"
+                        className="w-20 h-20 rounded-lg object-cover shadow-sm mx-auto md:w-16 md:h-16"
                       />
                     </td>
 
                     {/* Brand */}
-                    <td className="px-6 py-4 text-sm md:text-base text-neutral-700">{vehicle.brand}</td>
+                    <td className="px-4 py-3 text-sm text-neutral-700 sm:px-6 sm:py-4 md:text-base">{vehicle.brand}</td>
 
                     {/* Model */}
-                    <td className="px-6 py-4 text-sm md:text-base text-neutral-700">{vehicle.model}</td>
+                    <td className="px-4 py-3 text-sm text-neutral-700 sm:px-6 sm:py-4 md:text-base">{vehicle.model}</td>
 
                     {/* Year */}
-                    <td className="px-6 py-4 text-sm md:text-base text-neutral-700">{vehicle.year}</td>
+                    <td className="px-4 py-3 text-sm text-neutral-700 sm:px-6 sm:py-4 md:text-base">{vehicle.year}</td>
 
                     {/* Price */}
-                    <td className="px-6 py-4 text-sm md:text-base font-bold text-secondary-800">
+                    <td className="px-4 py-3 text-sm font-bold text-secondary-800 sm:px-6 sm:py-4 md:text-base">
                       {formatPrice(vehicle.price)}
                     </td>
 
                     {/* Actions */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3 sm:px-6 sm:py-4">
                       {vehicleToDelete === vehicle.id ? (
                         // Delete confirmation inline
                         <div className="flex flex-col gap-2">
-                          <span className="text-sm text-neutral-700 mb-2">Delete?</span>
+                          <span className="text-xs text-neutral-700 mb-1 sm:text-sm sm:mb-2">¿Eliminar?</span>
                           <div className="flex gap-2 justify-center">
                             <Button
                               variant="danger"
                               size="sm"
                               onClick={handleDelete}
-                              aria-label="Confirm delete"
+                              aria-label="Confirmar eliminación"
+                              className="min-h-[44px] px-4 sm:min-h-0 sm:px-3"
                             >
-                              Yes
+                              Sí
                             </Button>
                             <Button
                               variant="neutral"
                               size="sm"
                               onClick={cancelDelete}
-                              aria-label="Cancel delete"
+                              aria-label="Cancelar eliminación"
+                              className="min-h-[44px] px-4 sm:min-h-0 sm:px-3"
                             >
                               No
                             </Button>
@@ -154,9 +156,10 @@ const VehicleInventory: React.FC = () => {
                           variant="danger"
                           size="sm"
                           onClick={() => confirmDelete(vehicle.id)}
-                          aria-label={`Delete ${vehicle.brand} ${vehicle.model}`}
+                          aria-label={`Eliminar ${vehicle.brand} ${vehicle.model}`}
+                          className="min-h-[44px] px-4 sm:min-h-0 sm:px-3"
                         >
-                          Delete
+                          Eliminar
                         </Button>
                       )}
                     </td>
@@ -172,7 +175,7 @@ const VehicleInventory: React.FC = () => {
       {vehicles.length > 0 && (
         <div className="bg-neutral-50 border-t border-neutral-200 px-6 py-4 rounded-b-2xl">
           <p className="text-sm text-neutral-600 font-medium text-center">
-            Showing {vehicles.length} of {vehicles.length} vehicles
+            Mostrando {vehicles.length} de {vehicles.length} vehículos
           </p>
         </div>
       )}

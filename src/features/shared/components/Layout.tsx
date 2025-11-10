@@ -18,20 +18,20 @@ function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-primary-50">
       {/* Header */}
-      <header className="relative overflow-hidden bg-gradient-primary shadow-lg px-8 py-10 text-center md:px-4 md:py-7">
+      <header className="relative overflow-hidden bg-gradient-primary shadow-lg px-4 py-6 text-center md:px-6 md:py-8 lg:px-8 lg:py-10">
         {/* Decorative overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%)' }} />
 
-        <h1 className="relative m-0 text-white text-[2.75rem] font-extrabold tracking-tight leading-tight md:text-2xl" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}>
+        <h1 className="relative m-0 text-white text-2xl font-extrabold tracking-tight leading-tight sm:text-3xl md:text-4xl lg:text-5xl" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}>
           AutoVentas Premium
         </h1>
-        <p className="relative mt-3 text-accent-400 text-[1.15rem] font-medium tracking-wide md:text-sm">
+        <p className="relative mt-2 text-accent-400 text-sm font-medium tracking-wide sm:mt-3 md:text-base lg:text-lg">
           Tu vehículo ideal te espera
         </p>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-[1400px] mx-auto px-4 py-12 pb-28 md:px-4 md:py-6 md:pb-24">
+      <main className="flex-1 w-full max-w-[1400px] mx-auto px-4 py-6 pb-24 md:py-8 md:pb-28 lg:py-12">
         <Outlet />
       </main>
 
@@ -39,107 +39,107 @@ function Layout() {
       <FloatingMenu items={menuItems} />
 
       {/* Bottom Navigation - Desktop Only */}
-      <nav className="hidden md:flex fixed bottom-0 left-0 right-0 z-[100] justify-around items-center bg-white border-t-[3px] border-accent-400 shadow-[0_-4px_24px_rgba(15,23,42,0.15)] backdrop-blur-[10px] px-2 py-3 md:py-2">
+      <nav className="hidden md:flex fixed bottom-0 left-0 right-0 z-[100] justify-around items-center bg-white border-t-[3px] border-accent-400 shadow-[0_-4px_24px_rgba(15,23,42,0.15)] backdrop-blur-[10px] px-2 py-2 lg:py-3">
         <Link
           to="/"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <Home
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Inicio</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Inicio</span>
         </Link>
 
         <Link
           to="/quienes-somos"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/quienes-somos'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <Info
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/quienes-somos' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Quiénes Somos</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Quiénes Somos</span>
         </Link>
 
         <Link
           to="/contactanos"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/contactanos'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <Phone
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/contactanos' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Contáctanos</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Contáctanos</span>
         </Link>
 
         <Link
           to="/agregar-vehiculo"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/agregar-vehiculo'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <PlusCircle
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/agregar-vehiculo' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Agregar</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Agregar</span>
         </Link>
 
         <Link
           to="/inventario"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/inventario'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <List
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/inventario' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Inventario</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Inventario</span>
         </Link>
 
         <Link
           to="/posibles-compras"
-          className={`flex flex-col items-center min-w-[85px] px-6 py-3 rounded-xl transition-all duration-300 ease-smooth md:min-w-[70px] md:px-2 md:py-2 md:rounded-lg ${
+          className={`flex flex-col items-center min-w-[70px] px-2 py-2 rounded-lg transition-all duration-300 ease-smooth lg:min-w-[85px] lg:px-4 lg:py-3 lg:rounded-xl ${
             location.pathname === '/posibles-compras'
               ? 'bg-gradient-primary text-white shadow-md'
               : 'text-primary-500 hover:bg-secondary-50 hover:text-secondary-800 hover:-translate-y-1'
           }`}
         >
           <ShoppingCart
-            className={`mb-[0.35rem] transition-all duration-300 ease-smooth md:mb-1 ${
+            className={`mb-1 transition-all duration-300 ease-smooth lg:mb-[0.35rem] ${
               location.pathname === '/posibles-compras' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]' : 'group-hover:scale-110'
             }`}
             size={24}
           />
-          <span className="text-sm font-semibold tracking-tight md:text-[0.7rem]">Posibles</span>
+          <span className="text-[0.7rem] font-semibold tracking-tight lg:text-sm">Posibles</span>
         </Link>
       </nav>
     </div>

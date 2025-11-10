@@ -21,7 +21,7 @@ export const AddVehicle: React.FC = () => {
   } = useAddVehicleForm();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 md:py-12 animate-fade-in">
+    <div className="max-w-4xl mx-auto px-4 py-6 animate-fade-in sm:py-8 md:py-10 lg:py-12">
       {/* Hero Section */}
       <PageHero
         title="Agregar Vehículo"
@@ -38,7 +38,7 @@ export const AddVehicle: React.FC = () => {
       )}
 
       {/* Form Container */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-[20px] p-6 md:p-10 shadow-md">
+      <form onSubmit={handleSubmit} className="bg-white rounded-[20px] p-6 shadow-md sm:p-8 md:p-10">
         {/* Form Grid - 2x2 for first 4 fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <FormInput
@@ -125,12 +125,14 @@ export const AddVehicle: React.FC = () => {
         </div>
 
         {/* Form Actions */}
-        <div className="flex gap-4 justify-end">
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:justify-end">
           <Button
             type="button"
             variant="neutral"
             onClick={resetForm}
             disabled={isSubmitting}
+            fullWidth
+            className="sm:w-auto"
           >
             Limpiar Formulario
           </Button>
@@ -138,6 +140,8 @@ export const AddVehicle: React.FC = () => {
             type="submit"
             variant="primary"
             loading={isSubmitting}
+            fullWidth
+            className="sm:w-auto"
           >
             Agregar Vehículo
           </Button>
