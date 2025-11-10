@@ -10,21 +10,18 @@ import {
   CheckCircle,
 } from "lucide-react";
 import logo from "../../../assets/logo.png";
+import { PageHero, FeatureCard, StatCard } from '@/features/shared';
 
 function AboutUs() {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-primary rounded-[20px] text-center shadow-xl px-10 py-16 mb-10 md:px-6 md:py-8">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, transparent 100%)' }} />
-
-        <h2 className="relative text-white text-5xl font-extrabold tracking-tight leading-tight m-0 mb-3 md:text-[1.75rem]" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.2)' }}>
-          Sobre Nosotros
-        </h2>
-        <p className="relative text-accent-400 text-[1.3rem] font-semibold tracking-wide m-0 md:text-base">
-          Tu socio confiable en la compra de vehículos
-        </p>
-      </section>
+      <PageHero
+        title="Sobre Nosotros"
+        subtitle="Tu socio confiable en la compra de vehículos"
+        variant="gradient-overlay"
+        alignment="center"
+      />
 
       {/* Content sections with gap */}
       <div className="flex flex-col gap-10">
@@ -90,68 +87,47 @@ function AboutUs() {
           </h3>
 
           <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Handshake className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Confianza
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                Construimos relaciones duraderas basadas en la honestidad y
-                transparencia
-              </p>
-            </div>
+              <FeatureCard
+              icon={<Handshake size={40} strokeWidth={1.5} />}
+              title="Confianza"
+              description="Construimos relaciones duraderas basadas en la honestidad y transparencia"
+              variant="light"
+            />
 
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Star className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Calidad
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                Solo ofrecemos vehículos certificados que cumplen los más altos
-                estándares
-              </p>
-            </div>
+            <FeatureCard
+              icon={<Star size={40} strokeWidth={1.5} />}
+              title="Calidad"
+              description="Solo ofrecemos vehículos certificados que cumplen los más altos estándares"
+              variant="light"
+            />
 
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Lightbulb className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Innovación
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                Constantemente mejoramos nuestros procesos para ofrecer mejor
-                servicio
-              </p>
-            </div>
+            <FeatureCard
+              icon={<Lightbulb size={40} strokeWidth={1.5} />}
+              title="Innovación"
+              description="Constantemente mejoramos nuestros procesos para ofrecer mejor servicio"
+              variant="light"
+            />
 
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Leaf className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Sostenibilidad
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                Comprometidos con el medio ambiente y vehículos eco-amigables
-              </p>
-            </div>
+            <FeatureCard
+              icon={<Leaf size={40} strokeWidth={1.5} />}
+              title="Sostenibilidad"
+              description="Comprometidos con el medio ambiente y vehículos eco-amigables"
+              variant="light"
+            />
 
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Users className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Orientación al Cliente
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                El cliente es el centro de todas nuestras decisiones y acciones
-              </p>
-            </div>
+            <FeatureCard
+              icon={<Users size={40} strokeWidth={1.5} />}
+              title="Orientación al Cliente"
+              description="El cliente es el centro de todas nuestras decisiones y acciones"
+              variant="light"
+            />
 
-            <div className="bg-primary-50 text-center rounded-2xl shadow-sm border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:border-secondary-800 hover:-translate-y-2 hover:shadow-lg hover:bg-white md:px-6 md:py-8">
-              <Trophy className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.15)]" size={40} strokeWidth={1.5} />
-              <h4 className="text-primary-900 text-[1.4rem] font-bold m-0 mb-3 md:text-xl">
-                Excelencia
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-                Buscamos la perfección en cada detalle de nuestro servicio
-              </p>
-            </div>
+            <FeatureCard
+              icon={<Trophy size={40} strokeWidth={1.5} />}
+              title="Excelencia"
+              description="Buscamos la perfección en cada detalle de nuestro servicio"
+              variant="light"
+            />
           </div>
         </div>
 
@@ -164,41 +140,25 @@ function AboutUs() {
           </h3>
 
           <div className="relative grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
-            <div className="bg-white text-center rounded-2xl shadow-md border-2 border-transparent px-10 py-12 transition-all duration-[400ms] ease-smooth hover:-translate-y-1 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-              <span className="block text-[3.5rem] font-black tracking-tight mb-3 md:text-[2.5rem]" style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E40AF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                13+
-              </span>
-              <span className="block text-primary-800 text-[1.05rem] font-semibold">
-                Años de Experiencia
-              </span>
-            </div>
+            <StatCard
+              value="13+"
+              label="Años de Experiencia"
+            />
 
-            <div className="bg-white text-center rounded-2xl shadow-md border-2 border-transparent px-10 py-12 transition-all duration-[400ms] ease-smooth hover:-translate-y-1 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-              <span className="block text-[3.5rem] font-black tracking-tight mb-3 md:text-[2.5rem]" style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E40AF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                15,000+
-              </span>
-              <span className="block text-primary-800 text-[1.05rem] font-semibold">
-                Clientes Satisfechos
-              </span>
-            </div>
+            <StatCard
+              value="15,000+"
+              label="Clientes Satisfechos"
+            />
 
-            <div className="bg-white text-center rounded-2xl shadow-md border-2 border-transparent px-10 py-12 transition-all duration-[400ms] ease-smooth hover:-translate-y-1 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-              <span className="block text-[3.5rem] font-black tracking-tight mb-3 md:text-[2.5rem]" style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E40AF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                8
-              </span>
-              <span className="block text-primary-800 text-[1.05rem] font-semibold">
-                Sucursales en Chile
-              </span>
-            </div>
+            <StatCard
+              value="8"
+              label="Sucursales en Chile"
+            />
 
-            <div className="bg-white text-center rounded-2xl shadow-md border-2 border-transparent px-10 py-12 transition-all duration-[400ms] ease-smooth hover:-translate-y-1 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-              <span className="block text-[3.5rem] font-black tracking-tight mb-3 md:text-[2.5rem]" style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E40AF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                98%
-              </span>
-              <span className="block text-primary-800 text-[1.05rem] font-semibold">
-                Satisfacción del Cliente
-              </span>
-            </div>
+            <StatCard
+              value="98%"
+              label="Satisfacción del Cliente"
+            />
           </div>
         </div>
 

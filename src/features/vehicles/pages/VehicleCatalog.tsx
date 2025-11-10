@@ -2,6 +2,7 @@ import { CheckCircle, DollarSign, Wrench, FileText, Heart } from 'lucide-react';
 import { useVehicleCatalog } from '../hooks/useVehicleCatalog';
 import { useVehicles } from '@/features/vehicles';
 import { useVehicleDetail, VehicleDetailModal } from '@/features/vehicle-detail';
+import { PageHero, Badge, Button, FeatureCard } from '@/features/shared';
 
 function VehicleCatalog() {
   const { catalogVehicles, featuredVehicle } = useVehicleCatalog();
@@ -11,23 +12,23 @@ function VehicleCatalog() {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white rounded-[20px] text-center shadow-lg border border-secondary-100 px-10 py-16 mb-10 md:px-6 md:py-8">
-        {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-accent" />
-
-        <h2 className="text-primary-900 text-5xl font-extrabold tracking-tight leading-tight m-0 mb-4 md:text-[1.75rem]">
-          Encuentra tu Vehículo Ideal
-        </h2>
-        <p className="text-primary-500 text-xl font-medium m-0 md:text-base">
-          Ofrecemos los mejores vehículos nuevos y seminuevos del mercado
-        </p>
-      </section>
+      <PageHero
+        title="Encuentra tu Vehículo Ideal"
+        subtitle="Ofrecemos los mejores vehículos nuevos y seminuevos del mercado"
+        variant="white"
+        alignment="center"
+        showAccentBorder
+      />
 
       {/* Featured Vehicle Section */}
       <section className="relative bg-white rounded-[20px] shadow-lg border border-secondary-100 px-10 py-10 mb-10 md:px-6">
-        <div className="absolute -top-3 right-6 bg-gradient-accent text-primary-900 font-extrabold uppercase text-sm tracking-widest shadow-md rounded-full px-7 py-[0.6rem]">
+        <Badge
+          variant="accent"
+          size="md"
+          className="absolute -top-3 right-6 shadow-md"
+        >
           OFERTA ESPECIAL
-        </div>
+        </Badge>
 
         <h3 className="text-primary-900 text-[2rem] font-bold m-0 mb-8 md:text-2xl">
           Vehículo Destacado del Mes
@@ -58,7 +59,8 @@ function VehicleCatalog() {
             <p className="text-primary-500 text-[1.05rem] leading-relaxed mb-8 md:text-[0.95rem]">
               {featuredVehicle.description}
             </p>
-            <button
+            <Button
+              variant="primary-gradient"
               onClick={() => openDetail({
                 id: featuredVehicle.id,
                 brand: featuredVehicle.brand,
@@ -68,10 +70,9 @@ function VehicleCatalog() {
                 image: featuredVehicle.image,
                 description: featuredVehicle.description
               })}
-              className="bg-gradient-primary text-white font-bold rounded-xl px-5 py-[0.65rem] shadow-md transition-all duration-300 ease-smooth border-none cursor-pointer text-[0.95rem] tracking-wide hover:-translate-y-1 hover:shadow-xl"
             >
               Ver Detalles
-            </button>
+            </Button>
           </div>
         </div>
       </section>
@@ -98,9 +99,13 @@ function VehicleCatalog() {
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.12)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 />
-                <span className="absolute top-3 right-3 bg-gradient-accent text-primary-900 font-bold uppercase text-xs tracking-wide shadow-md rounded-full px-4 py-[0.4rem]">
+                <Badge
+                  variant="accent"
+                  size="sm"
+                  className="absolute top-3 right-3 shadow-md"
+                >
                   {vehicle.type}
-                </span>
+                </Badge>
               </div>
 
               {/* Vehicle Info */}
@@ -115,12 +120,13 @@ function VehicleCatalog() {
                 {/* Features */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {vehicle.features.map((feature, index) => (
-                    <span
+                    <Badge
                       key={index}
-                      className="bg-secondary-50 text-secondary-800 border border-secondary-200 text-xs font-semibold rounded-full px-[0.85rem] py-[0.35rem]"
+                      variant="secondary"
+                      size="xs"
                     >
                       {feature}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
 
@@ -132,7 +138,9 @@ function VehicleCatalog() {
                     </span>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <button
+                    <Button
+                      variant="secondary"
+                      fullWidth
                       onClick={() => openDetail({
                         id: vehicle.id,
                         brand: vehicle.brand,
@@ -142,10 +150,10 @@ function VehicleCatalog() {
                         image: vehicle.image,
                         description: vehicle.description
                       })}
-                      className="flex-1 bg-transparent text-secondary-800 font-bold border-2 border-secondary-800 rounded-xl px-5 py-[0.65rem] cursor-pointer transition-all duration-300 ease-smooth text-[0.95rem] tracking-wide hover:bg-secondary-800 hover:text-white hover:shadow-md md:px-4 md:py-[0.6rem] md:text-sm"
+                      className="flex-1"
                     >
                       Ver Más
-                    </button>
+                    </Button>
                     <button
                       onClick={() => {
                         if (isMarkedForPurchase(vehicle.id)) {
@@ -184,61 +192,33 @@ function VehicleCatalog() {
         </h3>
 
         <div className="relative grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 md:grid-cols-1 md:gap-6">
-          <div className="text-center bg-white rounded-2xl shadow-md border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-            <CheckCircle
-              className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]"
-              size={48}
-              strokeWidth={1.5}
-            />
-            <h4 className="text-primary-900 text-[1.3rem] font-bold m-0 mb-3 md:text-[1.15rem]">
-              Garantía Certificada
-            </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-              Todos nuestros vehículos incluyen garantía de fábrica
-            </p>
-          </div>
+          <FeatureCard
+            icon={<CheckCircle size={48} strokeWidth={1.5} />}
+            title="Garantía Certificada"
+            description="Todos nuestros vehículos incluyen garantía de fábrica"
+            variant="white"
+          />
 
-          <div className="text-center bg-white rounded-2xl shadow-md border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-            <DollarSign
-              className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]"
-              size={48}
-              strokeWidth={1.5}
-            />
-            <h4 className="text-primary-900 text-[1.3rem] font-bold m-0 mb-3 md:text-[1.15rem]">
-              Financiamiento
-            </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-              Planes de financiamiento flexibles hasta 60 meses
-            </p>
-          </div>
+          <FeatureCard
+            icon={<DollarSign size={48} strokeWidth={1.5} />}
+            title="Financiamiento"
+            description="Planes de financiamiento flexibles hasta 60 meses"
+            variant="white"
+          />
 
-          <div className="text-center bg-white rounded-2xl shadow-md border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-            <Wrench
-              className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]"
-              size={48}
-              strokeWidth={1.5}
-            />
-            <h4 className="text-primary-900 text-[1.3rem] font-bold m-0 mb-3 md:text-[1.15rem]">
-              Servicio Post-Venta
-            </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-              Mantenimiento y repuestos originales
-            </p>
-          </div>
+          <FeatureCard
+            icon={<Wrench size={48} strokeWidth={1.5} />}
+            title="Servicio Post-Venta"
+            description="Mantenimiento y repuestos originales"
+            variant="white"
+          />
 
-          <div className="text-center bg-white rounded-2xl shadow-md border-2 border-transparent px-8 py-10 transition-all duration-[400ms] ease-smooth hover:-translate-y-2 hover:shadow-xl hover:border-accent-400 md:px-6 md:py-8">
-            <FileText
-              className="block mx-auto mb-5 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]"
-              size={48}
-              strokeWidth={1.5}
-            />
-            <h4 className="text-primary-900 text-[1.3rem] font-bold m-0 mb-3 md:text-[1.15rem]">
-              Documentación
-            </h4>
-            <p className="text-primary-500 text-[0.95rem] leading-relaxed m-0">
-              Gestión completa de trámites y documentos
-            </p>
-          </div>
+          <FeatureCard
+            icon={<FileText size={48} strokeWidth={1.5} />}
+            title="Documentación"
+            description="Gestión completa de trámites y documentos"
+            variant="white"
+          />
         </div>
       </section>
 

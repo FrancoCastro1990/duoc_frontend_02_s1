@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Linkedin, MapPinned, CheckCircle } from 'lucide-react';
 import { useContactForm } from '../hooks/useContactForm';
+import { PageHero, ContactInfoItem, Alert, FormInput, FormTextarea, Button } from '@/features/shared';
 
 function Contact() {
   const { formData, submitted, handleSubmit, handleChange } = useContactForm();
@@ -7,16 +8,12 @@ function Contact() {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-primary rounded-[20px] text-center shadow-xl px-10 py-16 mb-10 md:px-6 md:py-8">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, transparent 100%)' }} />
-
-        <h2 className="relative text-white text-5xl font-extrabold tracking-tight leading-tight m-0 mb-3 md:text-[1.75rem]" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.2)' }}>
-          Contáctanos
-        </h2>
-        <p className="relative text-accent-400 text-[1.3rem] font-semibold tracking-wide m-0 md:text-base">
-          Estamos aquí para ayudarte en tu búsqueda del vehículo perfecto
-        </p>
-      </section>
+      <PageHero
+        title="Contáctanos"
+        subtitle="Estamos aquí para ayudarte en tu búsqueda del vehículo perfecto"
+        variant="gradient-overlay"
+        alignment="center"
+      />
 
       {/* Contact Container - Info & Form */}
       <div className="grid grid-cols-[1fr_1.5fr] gap-10 mb-10 lg:grid-cols-1">
@@ -27,68 +24,43 @@ function Contact() {
           </h3>
 
           {/* Info Items */}
-          <div className="flex gap-5 mb-8 pb-8 border-b-2 border-primary-100">
-            <MapPin className="flex-shrink-0 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]" size={32} strokeWidth={1.5} />
-            <div>
-              <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-3">
-                Dirección
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                Av. Providencia 1234, Providencia
-              </p>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                Santiago, Chile
-              </p>
-            </div>
-          </div>
+          <ContactInfoItem
+            icon={<MapPin size={32} strokeWidth={1.5} />}
+            title="Dirección"
+            details={[
+              'Av. Providencia 1234, Providencia',
+              'Santiago, Chile'
+            ]}
+          />
 
-          <div className="flex gap-5 mb-8 pb-8 border-b-2 border-primary-100">
-            <Phone className="flex-shrink-0 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]" size={32} strokeWidth={1.5} />
-            <div>
-              <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-3">
-                Teléfonos
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                +56 2 2345 6789
-              </p>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                +56 9 8765 4321
-              </p>
-            </div>
-          </div>
+          <ContactInfoItem
+            icon={<Phone size={32} strokeWidth={1.5} />}
+            title="Teléfonos"
+            details={[
+              '+56 2 2345 6789',
+              '+56 9 8765 4321'
+            ]}
+          />
 
-          <div className="flex gap-5 mb-8 pb-8 border-b-2 border-primary-100">
-            <Mail className="flex-shrink-0 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]" size={32} strokeWidth={1.5} />
-            <div>
-              <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-3">
-                Email
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                ventas@autoventaspremium.cl
-              </p>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                contacto@autoventaspremium.cl
-              </p>
-            </div>
-          </div>
+          <ContactInfoItem
+            icon={<Mail size={32} strokeWidth={1.5} />}
+            title="Email"
+            details={[
+              'ventas@autoventaspremium.cl',
+              'contacto@autoventaspremium.cl'
+            ]}
+          />
 
-          <div className="flex gap-5 mb-10">
-            <Clock className="flex-shrink-0 text-secondary-800 drop-shadow-[0_2px_4px_rgba(30,64,175,0.2)]" size={32} strokeWidth={1.5} />
-            <div>
-              <h4 className="text-primary-900 text-[1.15rem] font-bold m-0 mb-3">
-                Horario de Atención
-              </h4>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                Lunes a Viernes: 9:00 - 19:00
-              </p>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                Sábado: 10:00 - 14:00
-              </p>
-              <p className="text-primary-500 text-[0.95rem] leading-relaxed my-[0.35rem]">
-                Domingo: Cerrado
-              </p>
-            </div>
-          </div>
+          <ContactInfoItem
+            icon={<Clock size={32} strokeWidth={1.5} />}
+            title="Horario de Atención"
+            details={[
+              'Lunes a Viernes: 9:00 - 19:00',
+              'Sábado: 10:00 - 14:00',
+              'Domingo: Cerrado'
+            ]}
+            className="mb-10"
+          />
 
           {/* Social Media */}
           <div className="mt-10 pt-8 border-t-[3px] border-accent-400">
@@ -123,64 +95,50 @@ function Contact() {
 
           {/* Success Message */}
           {submitted && (
-            <div className="flex items-center justify-center gap-3 bg-gradient-to-br from-[#10B981] to-[#059669] text-white font-semibold rounded-xl shadow-md px-6 py-5 mb-8 animate-fade-in-down">
-              <CheckCircle size={20} strokeWidth={2} />
-              <span>¡Mensaje enviado exitosamente! Nos contactaremos contigo pronto.</span>
-            </div>
+            <Alert
+              variant="success"
+              icon={<CheckCircle />}
+              message="¡Mensaje enviado exitosamente! Nos contactaremos contigo pronto."
+            />
           )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             {/* Full Name */}
-            <div className="flex flex-col">
-              <label htmlFor="nombre" className="text-primary-900 font-bold text-[0.95rem] mb-3">
-                Nombre Completo *
-              </label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-                placeholder="Ej: Juan Pérez"
-                className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-base px-5 py-4 transition-all duration-300 ease-smooth focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white md:px-4 md:py-[0.85rem] md:text-[0.95rem]"
-              />
-            </div>
+            <FormInput
+              label="Nombre Completo"
+              name="nombre"
+              type="text"
+              value={formData.nombre}
+              onChange={handleChange}
+              placeholder="Ej: Juan Pérez"
+              required
+              className="bg-primary-50 border-primary-200 focus:bg-white"
+            />
 
             {/* Email & Phone Row */}
             <div className="grid grid-cols-2 gap-6 lg:grid-cols-1">
-              <div className="flex flex-col">
-                <label htmlFor="email" className="text-primary-900 font-bold text-[0.95rem] mb-3 md:text-sm">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="tu@email.com"
-                  className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-base px-5 py-4 transition-all duration-300 ease-smooth focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white md:px-4 md:py-[0.85rem] md:text-[0.95rem]"
-                />
-              </div>
+              <FormInput
+                label="Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="tu@email.com"
+                required
+                className="bg-primary-50 border-primary-200 focus:bg-white"
+              />
 
-              <div className="flex flex-col">
-                <label htmlFor="telefono" className="text-primary-900 font-bold text-[0.95rem] mb-3 md:text-sm">
-                  Teléfono *
-                </label>
-                <input
-                  type="tel"
-                  id="telefono"
-                  name="telefono"
-                  value={formData.telefono}
-                  onChange={handleChange}
-                  required
-                  placeholder="+56 9 1234 5678"
-                  className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-base px-5 py-4 transition-all duration-300 ease-smooth focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white md:px-4 md:py-[0.85rem] md:text-[0.95rem]"
-                />
-              </div>
+              <FormInput
+                label="Teléfono"
+                name="telefono"
+                type="tel"
+                value={formData.telefono}
+                onChange={handleChange}
+                placeholder="+56 9 1234 5678"
+                required
+                className="bg-primary-50 border-primary-200 focus:bg-white"
+              />
             </div>
 
             {/* Subject */}
@@ -207,29 +165,27 @@ function Contact() {
             </div>
 
             {/* Message */}
-            <div className="flex flex-col">
-              <label htmlFor="mensaje" className="text-primary-900 font-bold text-[0.95rem] mb-3">
-                Mensaje *
-              </label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                value={formData.mensaje}
-                onChange={handleChange}
-                required
-                rows={5}
-                placeholder="Cuéntanos cómo podemos ayudarte..."
-                className="bg-primary-50 border-2 border-primary-200 text-primary-800 rounded-xl font-sans text-base px-5 py-4 transition-all duration-300 ease-smooth resize-y min-h-[140px] focus:outline-none focus:border-secondary-800 focus:shadow-[0_0_0_4px_rgba(30,64,175,0.1)] focus:bg-white md:px-4 md:py-[0.85rem] md:text-[0.95rem]"
-              />
-            </div>
+            <FormTextarea
+              label="Mensaje"
+              name="mensaje"
+              value={formData.mensaje}
+              onChange={handleChange}
+              placeholder="Cuéntanos cómo podemos ayudarte..."
+              rows={5}
+              required
+              className="bg-primary-50 border-primary-200 focus:bg-white resize-y min-h-[140px]"
+            />
 
             {/* Submit Button */}
-            <button
+            <Button
               type="submit"
-              className="bg-gradient-primary text-white text-[1.1rem] font-bold tracking-wide rounded-xl shadow-md border-none cursor-pointer px-10 py-5 mt-4 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-xl active:-translate-y-0 md:px-8 md:py-4 md:text-base"
+              variant="primary-gradient"
+              size="lg"
+              fullWidth
+              className="mt-4"
             >
               Enviar Mensaje
-            </button>
+            </Button>
           </form>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { ShoppingCart, Trash2, DollarSign } from "lucide-react";
 import { usePossiblePurchase } from '../hooks/usePossiblePurchase';
+import { EmptyState, Badge, Button } from '@/features/shared';
 
 /**
  * PossiblePurchase Page Component
@@ -53,15 +54,12 @@ export const PossiblePurchase: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {!hasVehicles ? (
           // Empty State
-          <div className="bg-white rounded-3xl p-12 md:p-16 shadow-md text-center">
-            <ShoppingCart className="w-20 h-20 mx-auto mb-6 text-neutral-400" />
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-4">
-              No hay vehículos marcados
-            </h2>
-            <p className="text-neutral-600 text-lg">
-              Explora nuestro catálogo y marca los vehículos que te interesen para compararlos aquí.
-            </p>
-          </div>
+          <EmptyState
+            icon={<ShoppingCart className="w-20 h-20" />}
+            title="No hay vehículos marcados"
+            description="Explora nuestro catálogo y marca los vehículos que te interesen para compararlos aquí."
+            className="bg-white rounded-3xl p-12 md:p-16 shadow-md"
+          />
         ) : (
           // Vehicle Grid
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -78,9 +76,9 @@ export const PossiblePurchase: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 right-4">
-                    <span className="bg-accent-400 text-primary-900 px-4 py-2 rounded-lg font-bold shadow-glow">
+                    <Badge variant="accent" className="shadow-glow">
                       {vehicle.year}
-                    </span>
+                    </Badge>
                   </div>
                 </div>
 
@@ -101,13 +99,15 @@ export const PossiblePurchase: React.FC = () => {
                   </p>
 
                   {/* Unmark Button */}
-                  <button
+                  <Button
+                    variant="danger"
+                    fullWidth
                     onClick={() => unmarkVehicle(vehicle.id)}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                    className="flex items-center justify-center gap-2"
                   >
                     <Trash2 className="w-5 h-5" />
                     Desmarcar
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
